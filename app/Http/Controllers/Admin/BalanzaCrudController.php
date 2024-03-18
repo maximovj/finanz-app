@@ -17,7 +17,8 @@ class BalanzaCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    //use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \App\Http\Controllers\Admin\Operations\BalanzaAccionesOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -39,7 +40,10 @@ class BalanzaCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        $this->crud->orderButtons('line',['balanzaacciones', 'delete']);
+        $this->crud->removeButtons(['update', 'delete', 'line']);
         $this->addColumns();
+
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
