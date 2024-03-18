@@ -124,6 +124,9 @@ class BalanzaCrudController extends CrudController
             'name' => 'titulo',
             'type' => 'text',
             'label' => 'Titulo',
+            'attributes' => [
+                'required' => 'true',
+            ],
         ]);
 
         // Create new field
@@ -131,12 +134,15 @@ class BalanzaCrudController extends CrudController
             'name' => 'descripcion',
             'type' => 'textarea',
             'label' => 'Descripción',
+            'attributes' => [
+                'required' => 'true',
+            ],
         ]);
 
         // Create new field
         $this->crud->addField([
             'name' => 'periodo',
-            'type' => 'select_from_array',
+            'type' => 'finanz_select-period',
             'label' => 'Seleccione un periodo',
             'allows_null' => false,
             'default' => 'na',
@@ -144,9 +150,90 @@ class BalanzaCrudController extends CrudController
                 'na' => 'Ninguno',
                 'anual' => 'Anual',
                 'rango_especifico' => 'Rango especifico',
+                'periodo_especifico' => 'Periodo especifico',
             ]
         ]);
 
+        // Create new field
+        $this->crud->addField([
+            'name'        => 'anio_1era',
+            'label'       => "Seleccione un año de inicio",
+            'type'        => 'select_from_array',
+            'options'     => $this->getAniosDesc(),
+            'allows_null' => false,
+            'default'     => 'one',
+            'wrapper' => [
+                'id' => 'balanza-anio_1era', 
+                'class' => 'col-md-6'
+            ]
+        ]);
+
+        // Create new field
+        $this->crud->addField([
+            'name' => 'mes_1era',
+            'type' => 'select2_from_array',
+            'label' => 'Seleccione un mes de inicio',
+            'allows_null' => false,
+            'options' => $this->getMeses(),
+            'wrapper' => [
+                'id' => 'balanza-mes_1era', 
+                'class' => 'col-md-6'
+            ]
+        ]);
+
+        // Create new field
+        $this->crud->addField([
+            'name'        => 'anio_2da',
+            'label'       => "Seleccione un año de inicio",
+            'type'        => 'select_from_array',
+            'options'     => $this->getAniosDesc(),
+            'allows_null' => false,
+            'default'     => 'one',
+            'wrapper' => [
+                'id' => 'balanza-anio_2da', 
+                'class' => 'col-md-6'
+            ]
+        ]);
+
+        // Create new field
+        $this->crud->addField([
+            'name' => 'mes_2da',
+            'type' => 'select2_from_array',
+            'label' => 'Seleccione un mes de inicio',
+            'allows_null' => false,
+            'options' => $this->getMeses(),
+            'wrapper' => [
+                'id' => 'balanza-mes_2da',
+                'class' => 'col-md-6'
+            ]
+        ]);
+
+    }
+
+    private function getAniosDesc()
+    {
+        $options = [];
+        for ($year = 2024; $year >= 1940; $year--) {
+            $options["$year"] = "$year";
+        }
+        return $options;
+    }
+
+    private function getMeses(){
+        return [
+                '1' => 'Enero', 
+                '2' => 'Febrero',
+                '3' => 'Marzo',
+                '4' => 'Abril',
+                '5' => 'Mayo',
+                '6' => 'Junio',
+                '7' => 'Julio',
+                '8' => 'Agosto',
+                '9' => 'Octubre',
+                '10' => 'Noviembre',
+                '11' => 'Septiembre',
+                '12' => 'Diciembre',
+        ];
     }
 
 }

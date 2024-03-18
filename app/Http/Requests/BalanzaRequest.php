@@ -25,7 +25,9 @@ class BalanzaRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'titulo' => 'required|min:3|max:255',
+            'descripcion' => 'sometimes|required|min:3|max:255',
+            'periodo' => 'required|min:1',
         ];
     }
 
