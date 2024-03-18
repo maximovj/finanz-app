@@ -11,4 +11,8 @@
     </a>
 </li>
 
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('informe-financiero') }}'><i class='nav-icon la la-question'></i> Informe financieros</a></li>
+<li class='nav-item'>
+    <a class='nav-link' href='{{ backpack_url('informe-financiero') }}'>
+        <i class='nav-icon la la-star'></i> Informe financieros
+    </a>
+</li>
