@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+require 'finanz/custom.php';
+
+Route::group([ 'prefix' => config('backpack.base.route_prefix', 'admin')], 
+function(){
+    prefix_backpack();
 });
+
+root_app();
