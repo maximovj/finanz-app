@@ -6,6 +6,14 @@
   <div class="dropdown-menu">
     <a
     class="dropdown-item finanz-dropdown-item"
+    href="{{ url($crud->route.'/'.$entry->getKey().'/estado-flujo-de-efectivo') }}">
+        <span>
+            <i class="la la-star"></i>
+            Estado flujo de efectivo
+        </span>
+    </a>
+    <a
+    class="dropdown-item finanz-dropdown-item"
     href="{{ url($crud->route.'/'.$entry->getKey().'/edit') }}">
         <span>
             <i class="la la-pencil"></i>

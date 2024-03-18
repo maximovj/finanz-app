@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin\Operations;
 
+use App\Models\Balanza;
 use Illuminate\Support\Facades\Route;
+use Prologue\Alerts\Facades\Alert;
 
 trait BalanzaAccionesOperation
 {
@@ -15,9 +17,9 @@ trait BalanzaAccionesOperation
      */
     protected function setupBalanzaAccionesRoutes($segment, $routeName, $controller)
     {
-        Route::get($segment.'/balanzaacciones', [
-            'as'        => $routeName.'.balanzaacciones',
-            'uses'      => $controller.'@balanzaacciones',
+        Route::get($segment.'/{id}/estado-flujo-de-efectivo', [
+            'as'        => $routeName.'.estado_flujo_de_efectivo',
+            'uses'      => $controller.'@estado_flujo_de_efectivo',
             'operation' => 'balanzaacciones',
         ]);
     }
@@ -42,17 +44,25 @@ trait BalanzaAccionesOperation
     /**
      * Show the view for performing the operation.
      *
+     * @param int $id
      * @return Response
      */
-    public function balanzaacciones()
+    public function estado_flujo_de_efectivo($id)
     {
         $this->crud->hasAccessOrFail('balanzaacciones');
+
+        // Check if exist `$id`
+        $balanza = Balanza::find($id);
+        if(!$balanza){
+            Alert::info('Balanza no encontrado en el sistema')->flash();
+            return redirect()->back();
+        }
 
         // prepare the fields you need to show
         $this->data['crud'] = $this->crud;
         $this->data['title'] = $this->crud->getTitle() ?? 'balanzaacciones '.$this->crud->entity_name;
 
         // load the view
-        return view("crud::operations.balanzaacciones", $this->data);
+        return "Ver detalles";
     }
 }
