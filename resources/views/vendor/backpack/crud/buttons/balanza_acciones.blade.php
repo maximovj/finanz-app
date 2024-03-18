@@ -5,14 +5,15 @@
   </button>
   <div class="dropdown-menu">
     <a
-    class="dropdown-item btn btn-sm btn-link" href="{{ url($crud->route.'/'.$entry->getKey().'/edit') }}">
+    class="dropdown-item finanz-dropdown-item"
+    href="{{ url($crud->route.'/'.$entry->getKey().'/edit') }}">
         <span>
             <i class="la la-pencil"></i>
             Editar
         </span>
     </a>
     <a href="javascript:void(0)" onclick="deleteEntry(this)" data-route="{{ url($crud->route.'/'.$entry->getKey()) }}"
-    class="dropdown-item" data-button-type="delete">
+    class="dropdown-item finanz-dropdown-item" data-button-type="delete">
        <span>
         <i class="la la-trash"></i>
         {{ trans('backpack::crud.delete') }}

@@ -1,0 +1,15 @@
+/*
+ * Victor J. <victor.maximo@mtlc.com.mx>
+ * date 18/03/2024
+ * update 18/03/2024
+ * desc Custom CSS : all css styles must have prefix `finanz`
+ */
+
+.finanz-dropdown-item:hover{
+    background-color: #b0b0b02b;
+    cursor: pointer;
+}
+
+.finanz-dropdown-item i {
+    color: #2a2a2a44;
+}
