@@ -23,9 +23,9 @@ class CreateBalanzasTable extends Migration
             $table->string('src_balanza')->default('na');
             $table->string('periodo')->default('na')->nullable();
             $table->year('anio_1era')->default(date('Y')); // Default value for the current year
-            $table->tinyInteger('mes_1era')->default(1); // Default value 1 (January)
+            $table->tinyText('mes_1era')->nullable(); // Default value (Enero)
             $table->year('anio_2da')->default(date('Y')); // Default value for the current year
-            $table->tinyInteger('mes_2da')->default(1); // Default value 1 (January)
+            $table->tinyText('mes_2da')->nullable(); // Default value (Enero)
             $table->timestamps();
         });
     }
