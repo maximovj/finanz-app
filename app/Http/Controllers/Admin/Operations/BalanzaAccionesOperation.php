@@ -47,22 +47,21 @@ trait BalanzaAccionesOperation
      * @param int $id
      * @return Response
      */
-    public function estado_flujo_de_efectivo($id)
+    public function estado_flujo_de_efectivo(int $id)
     {
         $this->crud->hasAccessOrFail('balanzaacciones');
 
         // Check if exist `$id`
         $balanza = Balanza::find($id);
+        request()->session()->forget('balanza_current');
+
         if(!$balanza){
-            Alert::info('Balanza no encontrado en el sistema')->flash();
+            Alert::error('Balanza no encontrado en el sistema')->flash();
             return redirect()->back();
         }
 
-        // prepare the fields you need to show
-        $this->data['crud'] = $this->crud;
-        $this->data['title'] = $this->crud->getTitle() ?? 'balanzaacciones '.$this->crud->entity_name;
-
-        // load the view
-        return "Ver detalles";
+        // create global session
+        session(['balanza_current' => (object) $balanza->toArray()]);
+        return redirect()->route('informe-financiero.index');
     }
 }

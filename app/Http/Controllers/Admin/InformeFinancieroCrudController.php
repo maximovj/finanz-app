@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\InformeFinancieroRequest;
+use App\Models\Balanza;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Support\Facades\DB;
+use Prologue\Alerts\Facades\Alert;
 
 /**
  * Class InformeFinancieroCrudController
@@ -30,6 +32,20 @@ class InformeFinancieroCrudController extends CrudController
         CRUD::setModel(\App\Models\InformeFinanciero::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/informe-financiero');
         CRUD::setEntityNameStrings('informe financiero', 'informe financieros');
+        $this->addClauseList();
+    }
+
+     /**
+      *
+      * @author Victor J. <github.com:maximovj>
+      * @date 18/03/2024
+      * @desc The function `addClauseList` adds a where clause to filter results based on the current balanza
+     * ID stored in the session.
+      * @return void
+      */
+    protected function addClauseList(){
+        $balanza = session('balanza_current');
+        $this->crud->addClause('where', 'balanza_id', '=', $balanza->id);
     }
 
     /**
@@ -157,9 +173,12 @@ class InformeFinancieroCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+
     }
 
     protected function addFields(){
+        // get current entry
+        $entry = $this->crud->getCurrentEntry();
 
         // Create new field
         $this->crud->addField([
@@ -174,8 +193,12 @@ class InformeFinancieroCrudController extends CrudController
         'name'      => 'balanza_id', // the db column for the foreign key
         'entity'    => 'balanza', // the method that defines the relationship in your Model
         'attribute' => 'custom_title', // foreign key attribute that is shown to user
+        'allows_null' => false,
         'options'   => (function ($query) {
-                return $query->orderBy('titulo', 'ASC')->get(['id', DB::raw("CONCAT(id,' - ',titulo) as custom_title")]);
+                $balanza = session('balanza_current');
+
+                return $query->where('id', $balanza->id)
+                ->get(['id', DB::raw("CONCAT(id,' - ',titulo) as custom_title")]);
             }), // force the related options to be a custom query, instead of all(); you can use this to filter the results show in the select
         ]);
 
@@ -224,7 +247,7 @@ class InformeFinancieroCrudController extends CrudController
             'name' => 'monto_inicial',
             'type' => 'number',
             'label' => 'Monto inicial',
-            'value' => 0,
+            'value' => $entry ? floatval($entry->monto_inicial) : 0.0,
             'attributes' => ["step" => "any"], // allow decimals
             'prefix'     => "$",
             'suffix'     => ".00",
@@ -235,7 +258,7 @@ class InformeFinancieroCrudController extends CrudController
             'name' => 'monto_final',
             'type' => 'number',
             'label' => 'Monto final',
-            'value' => 0,
+            'value' => $entry ? floatval($entry->monto_inicial) : 0.0,
             'attributes' => ["step" => "any"], // allow decimals
             'prefix'     => "$",
             'suffix'     => ".00",
