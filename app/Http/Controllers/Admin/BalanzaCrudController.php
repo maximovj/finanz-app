@@ -17,7 +17,8 @@ class BalanzaCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    //use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \App\Http\Controllers\Admin\Operations\BalanzaAccionesOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -39,7 +40,28 @@ class BalanzaCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        $this->crud->orderButtons('line',['balanzaacciones', 'delete']);
+        $this->crud->removeButtons(['update', 'delete', 'line']);
         $this->addColumns();
+
+        /**
+         * Columns can be defined using the fluent syntax or array syntax:
+         * - CRUD::column('price')->type('number');
+         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']);
+         */
+    }
+
+    /**
+     * Define what happens when the Show operation is loaded.
+     *
+     * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
+     * @return void
+     */
+    protected function setupShowOperation()
+    {
+        $this->crud->set('show.setFromDb', false);
+        $this->addColumns();
+
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
@@ -64,17 +86,16 @@ class BalanzaCrudController extends CrudController
 
         // Create new column
         $this->crud->addColumn([
-            'name' => 'periodo',
+            'name' => 'append-periodo',
             'type' => 'text',
             'label' => 'Periodo',
         ]);
 
         // Create new column
         $this->crud->addColumn([
-            'name' => 'custom_html-rango',
-            'type' => 'custom_html',
+            'name' => 'append-rango',
+            'type' => 'text',
             'label' => 'Rango',
-            'value' => 'N/A'
         ]);
     }
 
@@ -163,7 +184,7 @@ class BalanzaCrudController extends CrudController
             'allows_null' => false,
             'default'     => 'one',
             'wrapper' => [
-                'id' => 'balanza-anio_1era', 
+                'id' => 'balanza-anio_1era',
                 'class' => 'col-md-6'
             ]
         ]);
@@ -176,7 +197,7 @@ class BalanzaCrudController extends CrudController
             'allows_null' => false,
             'options' => $this->getMeses(),
             'wrapper' => [
-                'id' => 'balanza-mes_1era', 
+                'id' => 'balanza-mes_1era',
                 'class' => 'col-md-6'
             ]
         ]);
@@ -190,7 +211,7 @@ class BalanzaCrudController extends CrudController
             'allows_null' => false,
             'default'     => 'one',
             'wrapper' => [
-                'id' => 'balanza-anio_2da', 
+                'id' => 'balanza-anio_2da',
                 'class' => 'col-md-6'
             ]
         ]);
@@ -214,25 +235,25 @@ class BalanzaCrudController extends CrudController
     {
         $options = [];
         for ($year = 2024; $year >= 1940; $year--) {
-            $options["$year"] = "$year";
+            $options[$year] = "$year";
         }
         return $options;
     }
 
     private function getMeses(){
         return [
-                '1' => 'Enero', 
-                '2' => 'Febrero',
-                '3' => 'Marzo',
-                '4' => 'Abril',
-                '5' => 'Mayo',
-                '6' => 'Junio',
-                '7' => 'Julio',
-                '8' => 'Agosto',
-                '9' => 'Octubre',
-                '10' => 'Noviembre',
-                '11' => 'Septiembre',
-                '12' => 'Diciembre',
+            'Enero'     => 'Enero',
+            'Febrero'   => 'Febrero',
+            'Marzo'     => 'Marzo',
+            'Abril'     => 'Abril',
+            'Mayo'      => 'Mayo',
+            'Junio'     => 'Junio',
+            'Julio'     => 'Julio',
+            'Agosto'    => 'Agosto',
+            'Octubre'   => 'Octubre',
+            'Noviembre' => 'Noviembre',
+            'Septiembre'=> 'Septiembre',
+            'Diciembre' => 'Diciembre',
         ];
     }
 

@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use App\Models\Balanza;
 use Illuminate\Database\Eloquent\Model;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 
-class Balanza extends Model
+class InformeFinanciero extends Model
 {
     use CrudTrait;
 
@@ -15,14 +16,13 @@ class Balanza extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'balanzas';
+    protected $table = 'informes_financieros';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
-    protected $appends = ['append-rango', 'append-periodo'];
 
     /*
     |--------------------------------------------------------------------------
@@ -30,44 +30,25 @@ class Balanza extends Model
     |--------------------------------------------------------------------------
     */
 
-    /**
-     * @author Victor J. <github.com:maximovj>
-     * @date 18/03/2024
-     * @desc The function `getAppendRangoAttribute` returns a value based on the period type and specific
-     * attributes in a PHP class.
-     * @return The `getAppendRangoAttribute` function returns a value based on the `periodo` attribute
-     * of the object.
-     */
-    public function getAppendRangoAttribute()
-    {
-        $value = 'N/A';
-        switch($this->periodo){
-            case 'anual': $value = $this->anio_1era; break;
-            case 'rango_especifico': $value = $value = $this->mes_1era.' - '.$this->anio_1era; break;
-            case 'periodo_especifico':
-                $value = $this->mes_1era.' - '.$this->anio_1era . ' | ' .
-                        $this->mes_2da.' - '.$this->anio_2da;
-            break;
-        }
-        return $value;
-    }
-
-    public function getAppendPeriodoAttribute(){
-        $value = 'N/A';
-        switch($this->periodo){
-            case 'anual': $value = 'Anual'; break;
-            case 'rango_especifico': $value = 'Rango especifico'; break;
-            case 'periodo_especifico': $value = 'Periodo especifico'; break;
-        }
-        return $value;
-    }
-
-
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+
+    /**
+     * @author Victor J. <github.com:maximovj>
+     * @date 18/03/2024
+     * @desc The `balanza` function defines a relationship where the current object belongs to a `Balanza`
+     * object using the specified foreign key and local key.
+     * @return The code snippet is defining a relationship method named `balanza` in a Laravel Eloquent
+     * model. This method specifies that the current model belongs to a `Balanza` model using the
+     * foreign key `balanza_id` on the current model and the primary key `id` on the `Balanza` model.
+     * When this method is called, it will return the related `Balanza` model instance
+     */
+    public function balanza(){
+        return $this->belongsTo(Balanza::class, 'balanza_id', 'id');
+    }
 
     /*
     |--------------------------------------------------------------------------
