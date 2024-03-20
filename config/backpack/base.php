@@ -141,7 +141,10 @@ return [
         // 'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
 
         // custom js finanz
-        'js/custom/custom.js'
+        'js/custom/custom.js',
+        'js/lib/chart-utils.min.js', // https://github.com/imhvost/chart-utils/blob/master/dist/chart-utils.min.js
+        'js/lib/chart.js', //'https://cdn.jsdelivr.net/npm/chart.js',
+        'js/lib/helpers.js', //'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/helpers.min.js',
     ],
 
     // JS files that are loaded in all pages, using Laravel's mix() helper

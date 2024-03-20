@@ -21,6 +21,7 @@ class InformeFinancieroCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \App\Http\Controllers\Admin\Operations\VerMuestreoOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.

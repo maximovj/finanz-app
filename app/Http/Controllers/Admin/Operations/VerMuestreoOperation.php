@@ -1,0 +1,63 @@
+<?php
+
+namespace App\Http\Controllers\Admin\Operations;
+
+use Illuminate\Support\Facades\Route;
+
+trait VerMuestreoOperation
+{
+    /**
+     * Define which routes are needed for this operation.
+     *
+     * @param string $segment    Name of the current entity (singular). Used as first URL segment.
+     * @param string $routeName  Prefix of the route name.
+     * @param string $controller Name of the current CrudController.
+     */
+    protected function setupVerMuestreoRoutes($segment, $routeName, $controller)
+    {
+        Route::get($segment.'/ver-muestreo', [
+            'as'        => $routeName.'.vermuestreo',
+            'uses'      => $controller.'@ver_muestreo',
+            'operation' => 'vermuestreo',
+        ]);
+    }
+
+    /**
+     * Add the default settings, buttons, etc that this operation needs.
+     */
+    protected function setupVerMuestreoDefaults()
+    {
+        $this->crud->allowAccess('vermuestreo');
+
+        $this->crud->operation('vermuestreo', function () {
+            $this->crud->loadDefaultOperationSettingsFromConfig();
+        });
+
+        $this->crud->operation('list', function () {
+            $this->crud->addButton('top', 'vermuestreo', 'view', 'crud::buttons.ver_muestreo');
+            // $this->crud->addButton('line', 'vermuestreo', 'view', 'crud::buttons.vermuestreo');
+        });
+    }
+
+    /**
+     * Show the view for performing the operation.
+     *
+     * @return Response
+     */
+    public function ver_muestreo()
+    {
+        $this->crud->hasAccessOrFail('vermuestreo');
+
+        // Set data for view BackPack
+        $balanza = session('balanza_current');
+        $this->data['balanza'] = $balanza;
+
+        // prepare the fields you need to show
+        $this->data['crud'] = $this->crud;
+        $this->data['title'] = 'Muestreo';
+        $this->data['subtitle'] = 'Ver detalles';
+
+        // load the view
+        return view("muestreo.muestreo", $this->data);
+    }
+}
