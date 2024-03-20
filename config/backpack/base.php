@@ -145,6 +145,7 @@ return [
         'js/lib/chart-utils.min.js', // https://github.com/imhvost/chart-utils/blob/master/dist/chart-utils.min.js
         'js/lib/chart.js', //'https://cdn.jsdelivr.net/npm/chart.js',
         'js/lib/helpers.js', //'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/helpers.min.js',
+        'js/lib/sweetalert2@11.js', //'https://cdn.jsdelivr.net/npm/sweetalert2@11',
     ],
 
     // JS files that are loaded in all pages, using Laravel's mix() helper

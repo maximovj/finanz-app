@@ -126,25 +126,33 @@
             $('#validar-columnas').addClass('is-valid');
         }
 
-        if(!validarColumnas || !archivoExcel){
-            return false;
+        if(archivoExcel){
+            if (!archivoExcel.type.toLowerCase().includes('sheet') ||
+                !archivoExcel.name.toLowerCase().endsWith('.xlsx') &&
+                !archivoExcel.name.toLowerCase().endsWith('.xls') )
+            {
+                $('#archivo-excel').removeClass('is-valid');
+                $('#archivo-excel').addClass('is-invalid');
+                return false;
+            }
         }
 
-        if (!archivoExcel.type.toLowerCase().includes('sheet') ||
-            !archivoExcel.name.toLowerCase().endsWith('.xlsx') &&
-            !archivoExcel.name.toLowerCase().endsWith('.xls') )
-        {
-            $('#archivo-excel').removeClass('is-valid');
-            $('#archivo-excel').addClass('is-invalid');
-            return false;
-        }
-
-        return true;
+        return (!validarColumnas || !archivoExcel) ? false : true;
     }
 
     async function fngImportarExcel(event) {
 
         if(!fnHandlerFormFields()){
+            Swal.fire({
+                title: "Importar Excel",
+                text: "Todos los campos son requeridos!",
+                icon: "error",
+                timer: 2700,
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                showCancelButton: false,
+                showCloseButton: false
+            });
             return;
         }
 
