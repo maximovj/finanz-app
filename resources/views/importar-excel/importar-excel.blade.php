@@ -151,10 +151,31 @@
                 allowOutsideClick: false,
                 showConfirmButton: false,
                 showCancelButton: false,
-                showCloseButton: false
+                showCloseButton: false,
+                didOpen: ()=>{
+                    toastr.error('Todos los campos son requeridos!', 'Importar Excel',{timeOut: 2000});
+                }
             });
             return;
         }
+
+        Swal.fire({
+                title: "Importar Excel",
+                text: "Importando archivo excel, espere por favor...",
+                icon: "success",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                showCancelButton: false,
+                showCloseButton: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                },
+                willClose: () => {
+
+                }
+        });
+
+
 
         // get values for each input
         const formData = new FormData();
@@ -176,11 +197,15 @@
         })
         .then(res => res.json())
         .then(res => {
-            alert('Peticón exitosa.');
+            //alert('Peticón exitosa.');
+            Swal.close();
+            toastr.success('La importación fue exitosa!', 'Importar Excel',{timeOut: 2000});
             console.log(res);
         })
         .catch(err => {
-            alert('Error de petición');
+            //alert('Error de petición');
+            Swal.close();
+            toastr.error('Lo siento, hubo un error en el servidor', 'Importar Excel',{timeOut: 2000});
         });
 
     }
