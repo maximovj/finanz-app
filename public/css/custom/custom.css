@@ -13,3 +13,8 @@
 .finanz-dropdown-item i {
     color: #2a2a2a44;
 }
+
+.finanz-bold {
+    color: #2a2a2a44;
+    font-weight: 700;
+}
