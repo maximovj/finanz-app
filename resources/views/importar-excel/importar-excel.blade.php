@@ -198,9 +198,32 @@
         .then(res => res.json())
         .then(res => {
             //alert('Peticón exitosa.');
-            Swal.close();
-            toastr.success('La importación fue exitosa!', 'Importar Excel',{timeOut: 2000});
-            console.log(res);
+            if(res.success){
+                Swal.fire({
+                    title: "Importar Excel",
+                    text: "La importación fue exitosa!",
+                    icon: "success",
+                    timer: 2700,
+                    timerProgressBar: true,
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                    showCancelButton: false,
+                    showCloseButton: false,
+                    didOpen: () => {
+                        toastr.success('La importación fue exitosa!', 'Importar Excel',
+                        {
+                            timeOut: 2500,
+                            progressBar: true,
+                            closeDuration: 100,
+                            onHidden: function() {  }
+                        });
+                    },
+                    willClose: ()=>{
+                        window.location.href = res.url_success;
+
+                    }
+                });
+            }
         })
         .catch(err => {
             //alert('Error de petición');

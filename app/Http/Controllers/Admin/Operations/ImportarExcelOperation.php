@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Admin\Operations;
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\System\ImportarExcel;
+use Exception;
 use Prologue\Alerts\Facades\Alert;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Route;
+use App\Importar\InformeFinancieroImport;
 
 trait ImportarExcelOperation
 {
@@ -84,33 +88,38 @@ trait ImportarExcelOperation
     public function importar_excel_balanza($token)
     {
         $this->crud->hasAccessOrFail('importarexcel');
+        $file = request()->file('archivo-excel');
+        $file = ImportarExcel::validarHojaDeCalculo($file);
+        $msg_err = ImportarExcel::importar($file, $token);
 
-        // check if exists `balanza_current`
-        $balanza = session('balanza_current');
-        if($balanza->token !== $token )
-        {
-            request()->session()->forget('balanza_current');
+        if(!empty($msg_err)){
             return response()->json([
                 'code' => 400,
                 'success' => false,
-                'msg_title' => 'Importación Excel',
-                'msg_text' => 'Lo siento, el token proporcionado invalidado por el sistema.',
+                'msg_title' => 'Importacion Excel',
+                'msg_text' => $msg_err,
                 'data' => [],
             ], 400);
         }
 
-        $file = request()->file('archivo-excel');
-
         return response()->json([
             'code' => 200,
             'success' => true,
-            'msg_title' => 'Importación Excel',
-            'msg_text' => 'La exportación se ha realizado exitosamente.',
+            'url_success' => route('informe-financiero.index'),
+            'msg_title' => 'Importacion Excel',
+            'msg_text' => 'La exportacion se ha realizado exitosamente.',
             'data' => [
-                'file' => $file
+                'file' => $file->isFile(),
+                'originalName' => $file->getClientOriginalName(),
+                'extension' => $file->getClientOriginalExtension(),
+                'mimeType' => $file->getClientMimeType(),
+                'filename' => $file->getFilename(),
+                'type' => $file->getType(),
+                'size' => $file->getSize(),
+                'readable' => $file->isReadable(),
+                'writable' => $file->isWritable(),
             ],
         ],200);
     }
-
 
 }
