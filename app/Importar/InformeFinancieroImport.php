@@ -31,7 +31,11 @@ class InformeFinancieroImport implements ToCollection
         self::$rules = [
             '0' => ['required', 'string', Rule::in('FinanzApp')],
             '1' => ['required', 'string', Rule::in($balanza->periodo)],
-            '2' => ['required', 'string', Rule::in($balanza->append_rango)],
+            '2' => ['required', function ($attribute, $value, $fail) use($balanza) {
+                if (!(is_string($value) || is_numeric($value)) || $value != $balanza->append_rango) {
+                    $fail('El campo no. balanza debe ser igual a ('.$balanza->append_rango.') y ser de tipo string o numérico.');
+                }
+            }],
             '3' => ['required', function ($attribute, $value, $fail) use($balanza) {
                 if (!(is_string($value) || is_numeric($value)) || $value != $balanza->id) {
                     $fail('El campo no. balanza debe ser igual a ('.$balanza->id.') y ser de tipo string o numérico.');
