@@ -45,6 +45,7 @@ class ImportarExcel extends Controller
             $msg_err = "El archivo importado tiene problemas de lectura o incompatibilidad.";
         } catch (\Throwable $t) {
             $message = $t->getMessage();
+            //dd($t);
 
             if($message == "vacio"){
                 $msg_err = "No hay datos que registrar.";
@@ -52,6 +53,8 @@ class ImportarExcel extends Controller
                 $msg_err = "Lo siento, el token proporcionado invalidado por el sistema";
             }else if($message == "err_file"){
                 $msg_err = "Lo siento, el archivo no es compatible con el sistema de lectura.";
+            }else if($message == "spreadsheet_error"){
+                $msg_err = "Lo siento, los datos de validacion son incorrectos.";
             }
 
         }

@@ -8,6 +8,7 @@ use App\Models\Balanza;
 use App\Models\InformeFinanciero;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\ToCollection;
 
 class InformeFinancieroImport implements ToCollection
@@ -16,6 +17,7 @@ class InformeFinancieroImport implements ToCollection
     public static $batchSize = 1000;
     public static $contador = 0;
     public static $infoBalanza = [];
+    public static $rules;
     protected $mensaje;
 
     public function __construct($balanza)
@@ -23,6 +25,19 @@ class InformeFinancieroImport implements ToCollection
         // get `Balanza` information
         self::$infoBalanza = [
             'balanza_id' => $balanza->id,
+        ];
+
+        // set rules for Validator
+        self::$rules = [
+            '0' => ['required', 'string', Rule::in('FinanzApp')],
+            '1' => ['required', 'string', Rule::in($balanza->periodo)],
+            '2' => ['required', 'string', Rule::in($balanza->append_rango)],
+            '3' => ['required', function ($attribute, $value, $fail) use($balanza) {
+                if (!(is_string($value) || is_numeric($value)) || $value != $balanza->id) {
+                    $fail('El campo no. balanza debe ser igual a ('.$balanza->id.') y ser de tipo string o numérico.');
+                }
+            }],
+            '4' => ['required', 'string', Rule::in($balanza->token)],
         ];
     }
 
@@ -39,6 +54,13 @@ class InformeFinancieroImport implements ToCollection
     public function collection(Collection $rows)
     {
         $filaTotal = $rows->count();
+
+        // validate spreadsheet for system
+        $datos = $this->validatarHojaExcel($rows->splice(0, 5));
+        if(!$datos['passes'])
+        {
+            throw new Exception('spreadsheet_error', 1);
+        }
 
         // Run Process batch
         for($i = 0; $i < $filaTotal; $i += self::$batchSize)
@@ -158,6 +180,39 @@ class InformeFinancieroImport implements ToCollection
             return [
                 'passes' => false,
                 'array_data' => [],
+            ];
+        }
+
+        return [
+            'passes' => true,
+            'array_data' => $validator->validate(),
+        ];
+    }
+
+    protected function validatarHojaExcel(Collection $rows)
+    {
+        $infoRequerida = $rows->reduce(function ($carry, $item) {
+            $filteredItem = array_filter($item->toArray(), function ($value, $key) {
+                return in_array($key, [1]);
+            }, ARRAY_FILTER_USE_BOTH);
+            return array_merge($carry, $filteredItem);
+        }, []);
+
+        $message = [
+            '0.*' => 'El campo software debe ser igual a (:values).',
+            '1.*' => 'El campo periodo debe ser igual a (:values).',
+            '2.*' => 'El campo rango debe ser igual a (:values).',
+            '3.*' => 'El campo no. balanza debe ser igual a (:values) y ser de tipo string o numérico.',
+            '4.*' => 'El campo token debe ser igual a (:values).',
+        ];
+
+        $validator = Validator::make($infoRequerida, self::$rules, $message);
+        if(!$validator->passes())
+        {
+            //var_dump($validator->errors()->all());
+            return [
+                'passes' => false,
+                'array_data' => []
             ];
         }
 

@@ -199,6 +199,7 @@
         .then(res => {
             //alert('Peticón exitosa.');
             if(res.success){
+                Swal.close();
                 Swal.fire({
                     title: "Importar Excel",
                     text: "La importación fue exitosa!",
@@ -223,10 +224,24 @@
 
                     }
                 });
+            } else {
+                Swal.close();
+                Swal.fire({
+                    title: "Importar Excel",
+                    text: res.msg_text,
+                    icon: "error",
+                    timer: 2700,
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                    showCancelButton: false,
+                    showCloseButton: false,
+                    didOpen: ()=>{
+                        toastr.error(res.msg_text, 'Importar Excel',{timeOut: 2000});
+                    }
+                });
             }
         })
         .catch(err => {
-            //alert('Error de petición');
             Swal.close();
             toastr.error('Lo siento, hubo un error en el servidor', 'Importar Excel',{timeOut: 2000});
         });
