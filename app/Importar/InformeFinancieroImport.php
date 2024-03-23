@@ -102,6 +102,7 @@ class InformeFinancieroImport implements ToCollection
             //sleep(1);
             //continue;
 
+            // validate cell and row data from spreadsheet
             $validator = $this->validator($row);
             $array_data  = $validator['array_data'];
 
@@ -182,6 +183,12 @@ class InformeFinancieroImport implements ToCollection
 
         if($validator->fails()){
             //var_dump($validator->errors()->all());
+            Log::channel('finanzlog')->error(self::class.'::'.__FUNCTION__.':'.__LINE__, [
+                'context' => 'Error validate cell and row data from spreadsheet',
+                'class' => self::class,
+                'failed' => $validator->failed(),
+                'error' => $validator->errors()->all(),
+            ]);
             return [
                 'passes' => false,
                 'array_data' => [],
@@ -216,6 +223,7 @@ class InformeFinancieroImport implements ToCollection
         {
             //var_dump($validator->errors()->all());
             Log::channel('finanzlog')->error(self::class.'::'.__FUNCTION__.':'.__LINE__, [
+                'context' => 'Error validate spreadsheet for system',
                 'class' => self::class,
                 'failed' => $validator->failed(),
                 'error' => $validator->errors()->all(),
