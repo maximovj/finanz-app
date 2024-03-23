@@ -15,11 +15,10 @@ class FinanzLogger
         $dateFormat = "Y-m-d H:i:s";
         $formatter = new LineFormatter($format, $dateFormat);
 
-        $streamHandler = new StreamHandler(storage_path('logs/custom.log'), Logger::DEBUG);
+        $streamHandler = new StreamHandler(storage_path('logs/finanz.log'), Logger::DEBUG);
         $streamHandler->setFormatter($formatter);
 
         $logger->pushHandler($streamHandler);
-
         return $logger;
     }
 }

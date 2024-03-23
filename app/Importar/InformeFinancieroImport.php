@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\Balanza;
 use App\Models\InformeFinanciero;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\ToCollection;
@@ -214,6 +215,12 @@ class InformeFinancieroImport implements ToCollection
         if(!$validator->passes())
         {
             //var_dump($validator->errors()->all());
+            Log::channel('finanzlog')->error(self::class.'::'.__FUNCTION__.':'.__LINE__, [
+                'class' => self::class,
+                'failed' => $validator->failed(),
+                'error' => $validator->errors()->all(),
+            ]);
+
             return [
                 'passes' => false,
                 'array_data' => []

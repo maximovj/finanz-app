@@ -99,6 +99,15 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        // Custom logger for `Finanz`
+        'finanzlog' => [
+            'driver' => 'daily',
+            'via' => \App\Logging\FinanzLogger::class,
+            'path' => storage_path('logs/finanz.log'),
+            'days' => 14,
+            'level' => 'debug',
+        ],
     ],
 
 ];
