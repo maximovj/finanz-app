@@ -1,3 +1,19 @@
+/**
+ * The `footer` function calculates the total sum of values from an array of `tooltipItems` and returns
+ * it as a string.
+ * @param tooltipItems - It looks like the `footer` function is calculating the total sum of values
+ * from the `tooltipItems` array. The `tooltipItems` array contains objects with a `parsed` property,
+ * which in turn has a `_stacks` property that contains an array of values.
+ * @returns ['Monto total: ' + sum]
+ */
+const footer = (tooltipItems) => {
+    let sum = 0;
+
+    tooltipItems.forEach(function(tooltipItem) {
+      sum += tooltipItem.parsed._stacks.y[0]  + tooltipItem.parsed._stacks.y[1];
+    });
+    return ['Monto total: ' + sum];
+};
 
 /**
  * The function `chartMuestreo` creates a combined bar and line chart using Chart.js to display
@@ -44,17 +60,18 @@ function chartMuestreo(ctx, labels, saldos_totales, activos)
         type: 'line',
         data: data,
         options: {
-        plugins: {
-            title: {
-            display: true,
-            text: 'Gráfica de muestreo / Informe financiero'
+            plugins: {
+                tooltip: {
+                  callbacks: {
+                    footer: footer,
+                  }
+                }
+            },
+            scales: {
+                y: {
+                stacked: true
+                }
             }
-        },
-        scales: {
-            y: {
-            stacked: true
-            }
-        }
         },
     });
 }
