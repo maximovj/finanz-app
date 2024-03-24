@@ -53,7 +53,9 @@ trait VerMuestreoOperation
         // Set data for view BackPack
         $balanza = session('balanza_current');
         $this->data['balanza'] = $balanza;
-        $this->data['muestreo'] = $muestreo_controller->getMuestreoDatos();
+        $this->data['chart_mes'] = $muestreo_controller->getMuestreoDatos();
+        $this->data['chart_categoria'] = $muestreo_controller->getMuestreoCategoria();
+        $this->data['chart_etiqueta'] = $muestreo_controller->getMuestreoEtiqueta();
 
         // prepare the fields you need to show
         $this->data['crud'] = $this->crud;

@@ -4,13 +4,15 @@ namespace App\Http\Controllers\System;
 
 use App\Http\Controllers\Controller;
 use App\Models\InformeFinanciero;
+use Illuminate\Support\Facades\DB;
 
 class MuestreoController extends Controller
 {
     public function getMuestreoDatos(){
         $balanza = session('balanza_current');
 
-        $resultados = InformeFinanciero::where('balanza_id', $balanza->id)
+        $resultados = InformeFinanciero::query()
+        ->where('balanza_id', $balanza->id)
         ->selectRaw('MONTH(fecha) as mes, SUM(monto_inicial) as saldo_inicial, SUM(monto_final) as saldo_final')
         ->groupBy('mes')
         ->get();
@@ -32,6 +34,61 @@ class MuestreoController extends Controller
 
 
         return ['meses' => $meses, 'saldos_inicial' => $saldos_inicial, 'saldos_final' => $saldos_final];
+    }
+
+    public function getMuestreoCategoria()
+    {
+        $balanza = session('balanza_current');
+
+        $resultados = InformeFinanciero::query()
+        ->where('balanza_id', $balanza->id)
+        ->selectRaw('categoria, SUM(monto_inicial) as saldo_inicial, SUM(monto_final) as saldo_final')
+        ->groupBy('categoria')
+        ->get();
+
+        $categorias = $resultados->reduce(function ($carry, $item) {
+            $carry[] = strval($item->categoria);
+            return $carry;
+        }, []);
+
+        $saldos_inicial = $resultados->reduce(function ($carry, $item) {
+            $carry[] = floatval($item->saldo_inicial);
+            return $carry;
+        }, []);
+
+        $saldos_final = $resultados->reduce(function ($carry, $item) {
+            $carry[] = floatval($item->saldo_final);
+            return $carry;
+        }, []);
+
+        return ['categorias' => $categorias, 'saldos_inicial' => $saldos_inicial, 'saldos_final' => $saldos_final];
+    }
+
+    public function getMuestreoEtiqueta(){
+        $balanza = session('balanza_current');
+
+        $resultados = InformeFinanciero::query()
+        ->where('balanza_id', $balanza->id)
+        ->select(DB::raw('etiqueta, SUM(monto_inicial) as saldo_inicial, SUM(monto_final) as saldo_final'))
+        ->groupBy('etiqueta')
+        ->get();
+
+        $etiquetas = $resultados->reduce(function ($carry, $item) {
+            $carry[] = strval($item->etiqueta);
+            return $carry;
+        }, []);
+
+        $saldos_inicial = $resultados->reduce(function ($carry, $item) {
+            $carry[] = floatval($item->saldo_inicial);
+            return $carry;
+        }, []);
+
+        $saldos_final = $resultados->reduce(function ($carry, $item) {
+            $carry[] = floatval($item->saldo_final);
+            return $carry;
+        }, []);
+
+        return ['etiquetas' => $etiquetas, 'saldos_inicial' => $saldos_inicial, 'saldos_final' => $saldos_final];
     }
 
     protected function getNombreDelMes(int $mes){

@@ -80,19 +80,27 @@
 <script src="../../js/custom/chart-muestreo.js"></script>
 <script>
     const Utils = ChartUtils.init();
-    var meses = @json($muestreo['meses']);
-    var saldos_inicial = @json($muestreo['saldos_inicial']);
-    var saldos_final = @json($muestreo['saldos_final']);
+    var chart_mes_meses = @json($chart_mes['meses']);
+    var chart_mes_saldos_inicial = @json($chart_mes['saldos_inicial']);
+    var chart_mes_saldos_final = @json($chart_mes['saldos_final']);
+
+    var chart_categoria_categorias = @json($chart_categoria['categorias']);
+    var chart_categoria_saldos_inicial = @json($chart_categoria['saldos_inicial']);
+    var chart_categoria_saldos_final = @json($chart_categoria['saldos_final']);
+
+    var chart_etiqueta_etiquetas = @json($chart_etiqueta['etiquetas']);
+    var chart_etiqueta_saldos_inicial = @json($chart_etiqueta['saldos_inicial']);
+    var chart_etiqueta_saldos_final = @json($chart_etiqueta['saldos_final']);
 
     $(document).ready(function(){
         const ctx = document.getElementById('myChart');
-        chartMuestreo(ctx, meses, saldos_final, saldos_inicial);
+        chartMuestreo(ctx, chart_mes_meses, chart_mes_saldos_inicial, chart_mes_saldos_final);
 
         const ctx2 = document.getElementById('myChart-2');
-        chartMuestreo(ctx2, meses, saldos_final, saldos_inicial);
+        chartMuestreo(ctx2, chart_categoria_categorias, chart_categoria_saldos_inicial, chart_categoria_saldos_final);
 
         const ctx3 = document.getElementById('myChart-3');
-        chartMuestreo(ctx3, meses, saldos_final, saldos_inicial);
+        chartMuestreo(ctx3, chart_etiqueta_etiquetas, chart_etiqueta_saldos_inicial, chart_etiqueta_saldos_final);
     });
 </script>
 @endsection
