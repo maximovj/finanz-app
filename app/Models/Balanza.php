@@ -22,7 +22,7 @@ class Balanza extends Model
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
-    protected $appends = ['append-rango', 'append-periodo'];
+    protected $appends = ['append_rango', 'append_periodo'];
 
     /*
     |--------------------------------------------------------------------------

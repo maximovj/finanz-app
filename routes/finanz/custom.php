@@ -11,13 +11,20 @@ use Illuminate\Support\Facades\Route;
 * * * * * * * CUSTOM ROUTE
 ********/
 
-function rutas_exportar_excel(){
+function rutas_exportar_excel()
+{
     Route::get('/exportar', function(){
         return 'Exportar archivo';
     });
 }
 
-function route_home(){
+function route_log_viewer_laravel()
+{
+    Route::get('/logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
+}
+
+function route_home()
+{
     Route::get('/', function () {
         return redirect('/'.config('backpack.base.route_prefix', 'admin'));
     });
@@ -28,10 +35,11 @@ function route_home(){
 ********/
 function prefix_backpack(){
     rutas_exportar_excel();
+    route_log_viewer_laravel();
 }
 
 /*******
-* ROUTES FROM ROOT (/) 
+* ROUTES FROM ROOT (/)
 ********/
 function root_app(){
     route_home();

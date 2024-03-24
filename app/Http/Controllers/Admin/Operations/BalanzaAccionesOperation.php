@@ -61,6 +61,8 @@ trait BalanzaAccionesOperation
         }
 
         // create global session
+        $token = md5($balanza->id.'/'.now().'/'.$balanza->created_at);
+        $balanza['token'] = $token;
         session(['balanza_current' => (object) $balanza->toArray()]);
         return redirect()->route('informe-financiero.index');
     }

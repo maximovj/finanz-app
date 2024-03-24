@@ -21,6 +21,8 @@ class InformeFinancieroCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \App\Http\Controllers\Admin\Operations\VerMuestreoOperation;
+    use \App\Http\Controllers\Admin\Operations\ImportarExcelOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -33,6 +35,7 @@ class InformeFinancieroCrudController extends CrudController
         CRUD::setRoute(config('backpack.base.route_prefix') . '/informe-financiero');
         CRUD::setEntityNameStrings('informe financiero', 'informe financieros');
         $this->addClauseList();
+        $this->crud->enableExportButtons();
     }
 
      /**
@@ -95,8 +98,9 @@ class InformeFinancieroCrudController extends CrudController
         // Create new column
         $this->crud->addColumn([
             'name' => 'fecha',
-            'type' => 'text',
+            'type' => 'date',
             'label' => 'Fecha',
+            'format' => 'D.M.Y',
         ]);
 
         // Create new column
@@ -220,6 +224,18 @@ class InformeFinancieroCrudController extends CrudController
             'attributes' => [
                 'required' => 'true',
             ]
+        ]);
+
+        // Create new field
+        $this->crud->addField([
+            'name' => 'fecha',
+            'type' => 'date_picker',
+            'label' => 'Fecha',
+            'date_picker_options' => [
+                'todayBtn' => 'linked',
+                'format'   => 'yyyy-mm-dd',
+                'language' => 'es'
+            ],
         ]);
 
         // Create new field

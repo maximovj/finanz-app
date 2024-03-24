@@ -86,14 +86,14 @@ class BalanzaCrudController extends CrudController
 
         // Create new column
         $this->crud->addColumn([
-            'name' => 'append-periodo',
+            'name' => 'append_periodo',
             'type' => 'text',
             'label' => 'Periodo',
         ]);
 
         // Create new column
         $this->crud->addColumn([
-            'name' => 'append-rango',
+            'name' => 'append_rango',
             'type' => 'text',
             'label' => 'Rango',
         ]);
@@ -132,12 +132,8 @@ class BalanzaCrudController extends CrudController
 
         // Create new field
         $this->crud->addField([
-            'name' => 'custom_html-mensaje',
-            'type' => 'custom_html',
-            'value' => '<span>Observación:</span><br><span>Todos los campos que tienen (*) son requeridos.</span>',
-            'wrapper' => [
-                'style' => 'color:red;font-style:italic;',
-            ]
+            'name' => 'finanz_form-alert',
+            'type' => 'finanz_form-alert',
         ]);
 
         // Create new field

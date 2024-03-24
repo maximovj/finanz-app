@@ -62,7 +62,8 @@ return [
         // 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css',
 
         // Custom CSS for finanz
-        'css/custom/custom.css'
+        'css/custom/custom.css',
+        'css/lib/toastr.min.css',
     ],
 
     // CSS files that are loaded in all pages, using Laravel's mix() helper
@@ -141,7 +142,11 @@ return [
         // 'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
 
         // custom js finanz
-        'js/custom/custom.js'
+        'js/custom/custom.js',
+        'js/lib/chart-utils.min.js', // https://github.com/imhvost/chart-utils/blob/master/dist/chart-utils.min.js
+        'js/lib/chart.js', //'https://cdn.jsdelivr.net/npm/chart.js',
+        'js/lib/sweetalert2@11.js', //'https://cdn.jsdelivr.net/npm/sweetalert2@11',
+        'js/lib/toastr.min.js', //'https://cdn.jsdelivr.net/npm/sweetalert2@11',
     ],
 
     // JS files that are loaded in all pages, using Laravel's mix() helper
