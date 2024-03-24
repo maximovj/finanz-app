@@ -1,3 +1,20 @@
+/**
+ * The function `initChartCategoria` creates a pie chart using Chart.js library with customizable
+ * colors, labels, and tooltips.
+ * @param ctx - The `ctx` parameter in the `initChartCategoria` function is the 2D rendering context of
+ * the canvas where the chart will be drawn. It is typically obtained by calling `getContext('2d')` on
+ * a canvas element. This context is used by Chart.js to render the chart graphics
+ * @param labels - Labels are the categories or names for each data point in the chart. They are
+ * typically displayed along the x-axis or as part of the chart legend. In the provided code, the
+ * `labels` parameter is an array containing the labels for each data point in the chart. These labels
+ * will be used to
+ * @param saldos - The `saldos` parameter in the `initChartCategoria` function is an array of arrays.
+ * Each inner array represents the data for a specific dataset in the chart. The inner arrays contain
+ * the numerical values that will be displayed in the chart slices.
+ * @returns The `initChartCategoria` function is setting up a pie chart using Chart.js library. It
+ * takes in a canvas context `ctx`, an array of `labels`, and an array of `saldos` (which seems to be
+ * an array of arrays representing the data for each dataset).
+ */
 function initChartCategoria(ctx, labels, saldos)
 {
     const data = {
