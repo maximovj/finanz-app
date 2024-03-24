@@ -80,7 +80,7 @@
 
 @section('after_scripts')
 <!-- <script src="../../js/examples/stacked-bar-line.js"></script> -->
-<script src="../../js/custom/chart-muestreo.js"></script>
+<script src="../../js/custom/chart-mes.js"></script>
 <script src="../../js/custom/chart-etiqueta.js"></script>
 <script src="../../js/custom/chart-categoria.js"></script>
 <script>
@@ -98,7 +98,7 @@
 
     $(document).ready(function(){
         const ctx = document.getElementById('myChart');
-        chartMuestreo(ctx, chart_mes_meses, chart_mes_saldos_inicial, chart_mes_saldos_final);
+        initChartMes(ctx, chart_mes_meses, chart_mes_saldos_inicial, chart_mes_saldos_final);
 
         const ctx2 = document.getElementById('myChart-2');
         initChartCategoria(ctx2, chart_categoria_categorias, chart_categoria_saldos);

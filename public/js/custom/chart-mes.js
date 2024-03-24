@@ -1,24 +1,7 @@
 /**
- * The `footer` function calculates the total sum of values from an array of `tooltipItems` and returns
- * it as a string.
- * @param tooltipItems - It looks like the `footer` function is calculating the total sum of values
- * from the `tooltipItems` array. The `tooltipItems` array contains objects with a `parsed` property,
- * which in turn has a `_stacks` property that contains an array of values.
- * @returns ['Monto total: ' + sum]
- */
-const footer = (tooltipItems) => {
-    let sum = 0;
-
-    tooltipItems.forEach(function(tooltipItem) {
-      sum += tooltipItem.parsed._stacks.y[0]  + tooltipItem.parsed._stacks.y[1];
-    });
-    return ['Monto total: ' + sum];
-};
-
-/**
- * The function `chartMuestreo` creates a combined bar and line chart using Chart.js to display
+ * The function `initChartMes` creates a combined bar and line chart using Chart.js to display
  * financial data with labels, total balances, and assets.
- * @param ctx - The `ctx` parameter in the `chartMuestreo` function is the 2D drawing context of the
+ * @param ctx - The `ctx` parameter in the `initChartMes` function is the 2D drawing context of the
  * canvas element where the chart will be rendered. It is typically obtained by calling
  * `getContext('2d')` on a canvas element.
  * @param labels - Labels are the categories or groups that will be displayed on the x-axis of the
@@ -28,11 +11,11 @@ const footer = (tooltipItems) => {
  * @param saldos_totales - The `saldos_totales` parameter represents an array of numerical values that
  * correspond to the total balances. These values will be used to create a bar chart in the financial
  * sampling chart alongside the `activos` values.
- * @param activos - The `activos` parameter in the `chartMuestreo` function represents an array of data
+ * @param activos - The `activos` parameter in the `initChartMes` function represents an array of data
  * points for the "Activos" dataset in the chart. These data points correspond to the values you want
  * to display for the "Activos" dataset on the chart. Each data point will be plotted
  */
-function chartMuestreo(ctx, labels, saldos_totales, activos)
+function initChartMes(ctx, labels, saldos_totales, activos)
 {
     const data = {
         labels: labels,
@@ -65,11 +48,18 @@ function chartMuestreo(ctx, labels, saldos_totales, activos)
             plugins: {
                 title: {
                     display: true,
-                    text: 'Gráfica de muestreo / informe financiero'
+                    text: 'Gráfica de muestreo / mes'
                 },
                 tooltip: {
                   callbacks: {
-                    footer: footer,
+                    footer: function(tooltipItems) {
+                        let sum = 0;
+
+                        tooltipItems.forEach(function(tooltipItem) {
+                          sum += tooltipItem.parsed._stacks.y[0]  + tooltipItem.parsed._stacks.y[1];
+                        });
+                        return ['Monto total: ' + sum];
+                    },
                   }
                 }
             },
