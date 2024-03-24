@@ -1,4 +1,21 @@
 
+/**
+ * The function `initChartMonto` initializes a line chart with two datasets and custom animations based
+ * on provided initial and final data.
+ * @param ctx - The `ctx` parameter in the `initChartMonto` function represents the context of the
+ * chart where it will be rendered. It typically refers to the 2D rendering context of the canvas
+ * element where the chart will be drawn. This context is necessary for drawing and interacting with
+ * the chart within the
+ * @param montos_iniciales - It looks like you were about to provide some information about the
+ * `montos_iniciales` parameter. How can I assist you with that?
+ * @param montos_finales - It looks like you were about to provide some information about the
+ * `montos_finales` parameter, but the message got cut off. Could you please provide more details or
+ * let me know if you need help with something specific related to `montos_finales`?
+ * @returns The `initChartMonto` function initializes a line chart using Chart.js library with two
+ * datasets (`montos_iniciales` and `montos_finales`). The chart has animations for x and y axes, with
+ * easing effects and duration specified. The chart also has options for interaction, plugins, legend,
+ * title, and scales.
+ */
 function initChartMonto(ctx, montos_iniciales, montos_finales)
 {
     const data = montos_iniciales;
