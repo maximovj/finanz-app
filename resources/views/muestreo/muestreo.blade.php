@@ -1,10 +1,10 @@
 @extends(backpack_view('blank'))
 <script>
-    //var chart_js = @json($chart_categoria['categorias']);
+    //var chart_js = @json($chart_monto['montos_iniciales']);
     //console.log(chart_js);
 </script>
 @php
-    //dd($chart_categoria['categorias']);
+    //dd($chart_monto['montos_iniciales']);
 @endphp
 
 @php
@@ -32,7 +32,6 @@
 @endsection
 
 @section('content')
-
 <div class="row">
 	<div class="col-md-12">
         <!-- Default header -->
@@ -67,6 +66,13 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row center-items mb-4">
+                        <div class="col-sm-12 col-md-11">
+                            <div class="finanz-chart-box wp-100">
+                                <canvas id="myChart-4" class="finanz-chart-render"></canvas>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -80,9 +86,11 @@
 
 @section('after_scripts')
 <!-- <script src="../../js/examples/stacked-bar-line.js"></script> -->
+<!-- <script src="../../js/examples/progressive-line.js"></script> -->
 <script src="../../js/custom/chart-mes.js"></script>
 <script src="../../js/custom/chart-etiqueta.js"></script>
 <script src="../../js/custom/chart-categoria.js"></script>
+<script src="../../js/custom/chart-monto.js"></script>
 <script>
     const Utils = ChartUtils.init();
     var chart_mes_meses = @json($chart_mes['meses']);
@@ -96,6 +104,9 @@
     var chart_etiqueta_saldos_inicial = @json($chart_etiqueta['saldos_inicial']);
     var chart_etiqueta_saldos_final = @json($chart_etiqueta['saldos_final']);
 
+    var chart_monto_montos_iniciales = @json($chart_monto['montos_iniciales']);
+    var chart_monto_montos_finales = @json($chart_monto['montos_finales']);
+
     $(document).ready(function(){
         const ctx = document.getElementById('myChart');
         initChartMes(ctx, chart_mes_meses, chart_mes_saldos_inicial, chart_mes_saldos_final);
@@ -105,6 +116,12 @@
 
         const ctx3 = document.getElementById('myChart-3');
         initChartEtiqueta(ctx3, chart_etiqueta_etiquetas, chart_etiqueta_saldos_final);
+
+        const ctx4 = document.getElementById('myChart-4');
+        initChartMonto(ctx4, chart_monto_montos_iniciales, chart_monto_montos_finales);
+
+        //const ctx4 = document.getElementById('myChart-4');
+        //new Chart(ctx4, configChart);
     });
 </script>
 @endsection

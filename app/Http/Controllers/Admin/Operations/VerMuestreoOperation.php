@@ -56,6 +56,7 @@ trait VerMuestreoOperation
         $this->data['chart_mes'] = $muestreo_controller->getMuestreoDatos();
         $this->data['chart_categoria'] = $muestreo_controller->getMuestreoCategoria();
         $this->data['chart_etiqueta'] = $muestreo_controller->getMuestreoEtiqueta();
+        $this->data['chart_monto'] = $muestreo_controller->getMuestreoMonto();
 
         // prepare the fields you need to show
         $this->data['crud'] = $this->crud;
