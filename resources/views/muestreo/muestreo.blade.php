@@ -45,8 +45,24 @@
         <div class="mx-0 my-2">
             <div class="card">
                 <div class="card-body">
-                    <div>
-                        <canvas id="myChart"></canvas>
+                    <div class="row center-items mb-4">
+                        <div class="col-sm-12 col-md-11">
+                            <div class="finanz-chart-box wp-100">
+                                <canvas id="myChart" class="finanz-chart-render"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row center-items mb-4">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="finanz-chart-box wp-80">
+                                <canvas id="myChart-2" class="finanz-chart-render"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="finanz-chart-box wp-80">
+                                <canvas id="myChart-3" class="finanz-chart-render"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -71,6 +87,12 @@
     $(document).ready(function(){
         const ctx = document.getElementById('myChart');
         chartMuestreo(ctx, meses, saldos_final, saldos_inicial);
+
+        const ctx2 = document.getElementById('myChart-2');
+        chartMuestreo(ctx2, meses, saldos_final, saldos_inicial);
+
+        const ctx3 = document.getElementById('myChart-3');
+        chartMuestreo(ctx3, meses, saldos_final, saldos_inicial);
     });
 </script>
 @endsection

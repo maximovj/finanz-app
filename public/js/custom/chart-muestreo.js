@@ -60,7 +60,13 @@ function chartMuestreo(ctx, labels, saldos_totales, activos)
         type: 'line',
         data: data,
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             plugins: {
+                title: {
+                    display: true,
+                    text: 'Gráfica de muestreo / informe financiero'
+                },
                 tooltip: {
                   callbacks: {
                     footer: footer,
