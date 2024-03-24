@@ -1,6 +1,10 @@
 @extends(backpack_view('blank'))
 
 @php
+    //dd($muestreo);
+@endphp
+
+@php
   $defaultBreadcrumbs = [
     trans('backpack::crud.admin') => url(config('backpack.base.route_prefix'), 'dashboard'),
     $crud->entity_name_plural => url($crud->route),
@@ -56,16 +60,16 @@
 @endsection
 
 @section('after_scripts')
-<!-- <script src="
-https://cdn.jsdelivr.net/npm/bundle-js@1.0.3/bundler.min.js
-"></script> -->
-<script src="../../js/examples/stacked-bar-line.js"></script>
+<!-- <script src="../../js/examples/stacked-bar-line.js"></script> -->
+<script src="../../js/custom/chart-muestreo.js"></script>
 <script>
+    const Utils = ChartUtils.init();
+    var meses = @json($muestreo['meses']);
+    var saldos_totales = @json($muestreo['saldos']);
+
     $(document).ready(function(){
         const ctx = document.getElementById('myChart');
-        new Chart(ctx, configChart);
+        chartMuestreo(ctx, meses, saldos_totales, saldos_totales);
     });
 </script>
 @endsection
-
-

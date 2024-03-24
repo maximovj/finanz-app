@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Operations;
 
+use App\Http\Controllers\System\MuestreoController;
 use Illuminate\Support\Facades\Route;
 
 trait VerMuestreoOperation
@@ -47,10 +48,12 @@ trait VerMuestreoOperation
     public function ver_muestreo()
     {
         $this->crud->hasAccessOrFail('vermuestreo');
+        $muestreo_controller = new MuestreoController();
 
         // Set data for view BackPack
         $balanza = session('balanza_current');
         $this->data['balanza'] = $balanza;
+        $this->data['muestreo'] = $muestreo_controller->getMuestreoDatos();
 
         // prepare the fields you need to show
         $this->data['crud'] = $this->crud;
