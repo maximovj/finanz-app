@@ -65,11 +65,12 @@
 <script>
     const Utils = ChartUtils.init();
     var meses = @json($muestreo['meses']);
-    var saldos_totales = @json($muestreo['saldos']);
+    var saldos_inicial = @json($muestreo['saldos_inicial']);
+    var saldos_final = @json($muestreo['saldos_final']);
 
     $(document).ready(function(){
         const ctx = document.getElementById('myChart');
-        chartMuestreo(ctx, meses, saldos_totales, saldos_totales);
+        chartMuestreo(ctx, meses, saldos_final, saldos_inicial);
     });
 </script>
 @endsection

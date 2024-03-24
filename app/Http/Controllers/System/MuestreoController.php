@@ -8,22 +8,30 @@ use App\Models\InformeFinanciero;
 class MuestreoController extends Controller
 {
     public function getMuestreoDatos(){
-        $resultados = InformeFinanciero::selectRaw('MONTH(fecha) as mes, SUM(monto_final) as saldo_total')
-                ->groupBy('mes')
-                ->get();
+        $balanza = session('balanza_current');
+
+        $resultados = InformeFinanciero::where('balanza_id', $balanza->id)
+        ->selectRaw('MONTH(fecha) as mes, SUM(monto_inicial) as saldo_inicial, SUM(monto_final) as saldo_final')
+        ->groupBy('mes')
+        ->get();
 
         $meses = $resultados->reduce(function ($carry, $item) {
             $carry[] = $this->getNombreDelMes($item->mes);
             return $carry;
         }, []);
 
-        $saldos = $resultados->reduce(function ($carry, $item) {
-            $carry[] = floatval($item->saldo_total);
+        $saldos_inicial = $resultados->reduce(function ($carry, $item) {
+            $carry[] = floatval($item->saldo_inicial);
+            return $carry;
+        }, []);
+
+        $saldos_final = $resultados->reduce(function ($carry, $item) {
+            $carry[] = floatval($item->saldo_final);
             return $carry;
         }, []);
 
 
-        return ['meses' => $meses, 'saldos' => $saldos];
+        return ['meses' => $meses, 'saldos_inicial' => $saldos_inicial, 'saldos_final' => $saldos_final];
     }
 
     protected function getNombreDelMes(int $mes){

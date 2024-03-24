@@ -23,7 +23,7 @@ function chartMuestreo(ctx, labels, saldos_totales, activos)
         datasets:
         [
             {
-            label: 'Saldo totales',
+            label: 'Monto final',
             data: saldos_totales,
             borderColor: Utils.CHART_COLORS.red,
             backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
@@ -31,7 +31,7 @@ function chartMuestreo(ctx, labels, saldos_totales, activos)
             type: 'bar'
             },
             {
-            label: 'Activos',
+            label: 'Monto inicial',
             data: activos,
             borderColor: Utils.CHART_COLORS.blue,
             backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
