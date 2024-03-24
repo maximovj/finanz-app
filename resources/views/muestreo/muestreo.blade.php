@@ -78,6 +78,7 @@
 @section('after_scripts')
 <!-- <script src="../../js/examples/stacked-bar-line.js"></script> -->
 <script src="../../js/custom/chart-muestreo.js"></script>
+<script src="../../js/custom/chart-etiqueta.js"></script>
 <script>
     const Utils = ChartUtils.init();
     var chart_mes_meses = @json($chart_mes['meses']);
@@ -100,7 +101,7 @@
         chartMuestreo(ctx2, chart_categoria_categorias, chart_categoria_saldos_inicial, chart_categoria_saldos_final);
 
         const ctx3 = document.getElementById('myChart-3');
-        chartMuestreo(ctx3, chart_etiqueta_etiquetas, chart_etiqueta_saldos_inicial, chart_etiqueta_saldos_final);
+        initChartEtiqueta(ctx3, chart_etiqueta_etiquetas, chart_etiqueta_saldos_final);
     });
 </script>
 @endsection
