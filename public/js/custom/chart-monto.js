@@ -13,7 +13,7 @@
  * let me know if you need help with something specific related to `montos_finales`?
  * @returns The `initChartMonto` function initializes a line chart using Chart.js library with two
  * datasets (`montos_iniciales` and `montos_finales`). The chart has animations for x and y axes, with
- * easing effects and duration specified. The chart also has options for interaction, plugins, legend,
+ * easing effects and durationX specified. The chart also has options for interaction, plugins, legend,
  * title, and scales.
  */
 function initChartMonto(ctx, montos_iniciales, montos_finales)
@@ -22,37 +22,40 @@ function initChartMonto(ctx, montos_iniciales, montos_finales)
     const data2 = montos_finales;
 
     const helpers = Chart.helpers;
-    let easing = helpers.easingEffects.easeInQuart;
+    let easingOut = helpers.easingEffects.easeOutQuart;
+    let easingIn = helpers.easingEffects.easeInQuint;
     let restart = false;
     const totalDuration = 5000;
-    const duration = (ctx) => easing(ctx.index / data.length) * totalDuration / data.length;
-    const delay = (ctx) => easing(ctx.index / data.length) * totalDuration;
+    const durationX = (ctx) => easingOut(ctx.index / data.length) * totalDuration / data.length;
+    const delayX = (ctx) => easingOut(ctx.index / data.length) * totalDuration;
+    const durationY = (ctx) => easingIn(ctx.index / data.length) * totalDuration / data.length;
+    const delayY = (ctx) => easingIn(ctx.index / data.length) * totalDuration;
     const previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
     const animation = {
         x: {
             type: 'number',
             easing: 'linear',
-            duration: duration,
+            duration: durationX,
             from: NaN, // the point is initially skipped
             delay(ctx) {
             if (ctx.type !== 'data' || ctx.xStarted) {
                 return 0;
             }
             ctx.xStarted = true;
-            return delay(ctx);
+            return delayX(ctx);
             }
         },
         y: {
             type: 'number',
             easing: 'linear',
-            duration: duration,
+            duration: durationY,
             from: previousY,
             delay(ctx) {
             if (ctx.type !== 'data' || ctx.yStarted) {
                 return 0;
             }
             ctx.yStarted = true;
-            return delay(ctx);
+            return delayY(ctx);
             }
         }
     };
@@ -74,6 +77,8 @@ function initChartMonto(ctx, montos_iniciales, montos_finales)
           }]
         },
         options: {
+          responsive: true,
+          maintainAspectRatio: false,
           animation,
           interaction: {
             intersect: false
@@ -82,8 +87,8 @@ function initChartMonto(ctx, montos_iniciales, montos_finales)
             legend: false,
             title: {
               display: true,
-              text: () => easing.name
-            }
+              text: 'Gráfica de muestreo / montos'
+            },
           },
           scales: {
             x: {

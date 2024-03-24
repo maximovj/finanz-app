@@ -49,8 +49,8 @@
                 <div class="card-body">
                     <div class="row center-items mb-4">
                         <div class="col-sm-12 col-md-11">
-                            <div class="finanz-chart-box wp-100">
-                                <canvas id="myChart" class="finanz-chart-render"></canvas>
+                            <div class="finanz-chart-box">
+                                <canvas id="myChart-4" class="finanz-chart-render"></canvas>
                             </div>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                     <div class="row center-items mb-4">
                         <div class="col-sm-12 col-md-11">
                             <div class="finanz-chart-box wp-100">
-                                <canvas id="myChart-4" class="finanz-chart-render"></canvas>
+                                <canvas id="myChart" class="finanz-chart-render"></canvas>
                             </div>
                         </div>
                     </div>
@@ -85,8 +85,6 @@
 @endsection
 
 @section('after_scripts')
-<!-- <script src="../../js/examples/stacked-bar-line.js"></script> -->
-<!-- <script src="../../js/examples/progressive-line.js"></script> -->
 <script src="../../js/custom/chart-mes.js"></script>
 <script src="../../js/custom/chart-etiqueta.js"></script>
 <script src="../../js/custom/chart-categoria.js"></script>
@@ -119,9 +117,6 @@
 
         const ctx4 = document.getElementById('myChart-4');
         initChartMonto(ctx4, chart_monto_montos_iniciales, chart_monto_montos_finales);
-
-        //const ctx4 = document.getElementById('myChart-4');
-        //new Chart(ctx4, configChart);
     });
 </script>
 @endsection
