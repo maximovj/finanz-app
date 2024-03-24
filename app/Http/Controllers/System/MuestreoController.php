@@ -47,21 +47,17 @@ class MuestreoController extends Controller
         ->get();
 
         $categorias = $resultados->reduce(function ($carry, $item) {
-            $carry[] = strval($item->categoria);
+            $carry[] = strval($item->categoria).' / monto_inicial';
+            $carry[] = strval($item->categoria).' / monto_final';
             return $carry;
         }, []);
 
-        $saldos_inicial = $resultados->reduce(function ($carry, $item) {
-            $carry[] = floatval($item->saldo_inicial);
+        $saldos = $resultados->reduce(function ($carry, $item) {
+            $carry[] = [floatval($item->saldo_inicial), floatval($item->saldo_final)];
             return $carry;
         }, []);
 
-        $saldos_final = $resultados->reduce(function ($carry, $item) {
-            $carry[] = floatval($item->saldo_final);
-            return $carry;
-        }, []);
-
-        return ['categorias' => $categorias, 'saldos_inicial' => $saldos_inicial, 'saldos_final' => $saldos_final];
+        return ['categorias' => $categorias, 'saldos' => $saldos];
     }
 
     public function getMuestreoEtiqueta(){

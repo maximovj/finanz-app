@@ -1,7 +1,10 @@
 @extends(backpack_view('blank'))
-
+<script>
+    //var chart_js = @json($chart_categoria['categorias']);
+    //console.log(chart_js);
+</script>
 @php
-    //dd($muestreo);
+    //dd($chart_categoria['categorias']);
 @endphp
 
 @php
@@ -79,6 +82,7 @@
 <!-- <script src="../../js/examples/stacked-bar-line.js"></script> -->
 <script src="../../js/custom/chart-muestreo.js"></script>
 <script src="../../js/custom/chart-etiqueta.js"></script>
+<script src="../../js/custom/chart-categoria.js"></script>
 <script>
     const Utils = ChartUtils.init();
     var chart_mes_meses = @json($chart_mes['meses']);
@@ -86,8 +90,7 @@
     var chart_mes_saldos_final = @json($chart_mes['saldos_final']);
 
     var chart_categoria_categorias = @json($chart_categoria['categorias']);
-    var chart_categoria_saldos_inicial = @json($chart_categoria['saldos_inicial']);
-    var chart_categoria_saldos_final = @json($chart_categoria['saldos_final']);
+    var chart_categoria_saldos = @json($chart_categoria['saldos']);
 
     var chart_etiqueta_etiquetas = @json($chart_etiqueta['etiquetas']);
     var chart_etiqueta_saldos_inicial = @json($chart_etiqueta['saldos_inicial']);
@@ -98,7 +101,7 @@
         chartMuestreo(ctx, chart_mes_meses, chart_mes_saldos_inicial, chart_mes_saldos_final);
 
         const ctx2 = document.getElementById('myChart-2');
-        chartMuestreo(ctx2, chart_categoria_categorias, chart_categoria_saldos_inicial, chart_categoria_saldos_final);
+        initChartCategoria(ctx2, chart_categoria_categorias, chart_categoria_saldos);
 
         const ctx3 = document.getElementById('myChart-3');
         initChartEtiqueta(ctx3, chart_etiqueta_etiquetas, chart_etiqueta_saldos_final);
