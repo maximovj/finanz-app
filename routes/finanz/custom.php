@@ -16,6 +16,9 @@ function prefix_backpack()
     // Route import excel
     Route::get('/ayuda/importar-excel', [AyudaController::class, 'ayuda_importar_excel'])->name('finanz.ayuda.importar-excel');
 
+    // Route import excel
+    Route::get('/ayuda/uso-del-sistema', [AyudaController::class, 'ayuda_uso_del_sistema'])->name('finanz.ayuda.uso-del-sistema');
+
     // Route log viewer laravel
     Route::get('/logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
 }

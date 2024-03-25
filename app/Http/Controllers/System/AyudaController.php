@@ -18,8 +18,8 @@ class AyudaController extends CrudController
         CRUD::setEntityNameStrings('Ayuda', 'Ayuda');
     }
 
-    public function ayuda_importar_excel(){
-
+    public function ayuda_importar_excel()
+    {
         // Set data enviroment for view BackPack
         $this->data['crud'] = $this->crud;
         $this->data['title'] = 'Importar Excel';
@@ -28,6 +28,18 @@ class AyudaController extends CrudController
 
         // Get view
         return view("ayuda.importar-excel", $this->data);
+    }
+
+    public function ayuda_uso_del_sistema()
+    {
+        // Set data enviroment for view BackPack
+        $this->data['crud'] = $this->crud;
+        $this->data['title'] = 'Uso del sistema';
+        $this->data['subtitle'] = 'Ayuda';
+        $this->data['section'] = 'Uso del sistema';
+
+        // Get view
+        return view("ayuda.uso-del-sistema", $this->data);
     }
 
 }

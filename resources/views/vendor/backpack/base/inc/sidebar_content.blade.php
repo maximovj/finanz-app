@@ -17,7 +17,7 @@
     </a>
     <ul class="nav-dropdown-items">
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ route('finanz.ayuda.uso-del-sistema') }}">
                 <i class="la la-star nav-icon"></i>Uso del sistema
             </a>
         </li>

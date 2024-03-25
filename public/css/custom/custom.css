@@ -115,3 +115,8 @@
 .pointer {
     cursor: pointer;
 }
+
+.txt-helper {
+    color: #989898;
+    font-size: 12px;
+}
