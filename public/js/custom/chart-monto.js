@@ -113,7 +113,7 @@ function initChartMonto(ctx, descripciones, montos_iniciales, montos_finales)
                         const suma = dataset_1 + dataset_2;
                         console.log('tooltip.callbacks.footer',context)
 
-                        return ['Monto total: ' + suma, 'Fecha: ' + fecha];
+                        return ['Monto total: ' + suma.toLocaleString(), 'Fecha: ' + fecha];
                     },
                 }
             }
