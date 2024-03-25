@@ -102,6 +102,7 @@
     var chart_etiqueta_saldos_inicial = @json($chart_etiqueta['saldos_inicial']);
     var chart_etiqueta_saldos_final = @json($chart_etiqueta['saldos_final']);
 
+    var chart_monto_descripciones = @json($chart_monto['descripciones']);
     var chart_monto_montos_iniciales = @json($chart_monto['montos_iniciales']);
     var chart_monto_montos_finales = @json($chart_monto['montos_finales']);
 
@@ -116,7 +117,7 @@
         initChartEtiqueta(ctx3, chart_etiqueta_etiquetas, chart_etiqueta_saldos_final);
 
         const ctx4 = document.getElementById('myChart-4');
-        initChartMonto(ctx4, chart_monto_montos_iniciales, chart_monto_montos_finales);
+        initChartMonto(ctx4, chart_monto_descripciones, chart_monto_montos_iniciales, chart_monto_montos_finales);
     });
 </script>
 @endsection
