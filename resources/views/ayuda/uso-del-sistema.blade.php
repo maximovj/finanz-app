@@ -91,6 +91,10 @@
                                 <p>
                                     En la página de "Muestreo", muestra todos los registros o datos de una balanza agrupados por meses, categorías, etiquetas y montos. Para la visualización se utilizan varios tipos de gráficas.
                                 </p>
+                                <img src="{{ asset('storage/finanz/chart-montos.png') }}" alt="gráfica de montos" class="w-100" loading="lazy"/>
+                                <img src="{{ asset('storage/finanz/chart-etiquetas.png') }}" alt="gráfica de montos" class="wp-50" loading="lazy"/>
+                                <img src="{{ asset('storage/finanz/chart-categorias.png') }}" alt="gráfica de montos" class="wp-50" loading="lazy"/>
+                                <img src="{{ asset('storage/finanz/chart-meses.png') }}" alt="gráfica de montos" class="w-100" loading="lazy"/>
                                 <span class="text-muted fs-10 p-clear">Nota: Se utilizan montos inicial y monto final para generar los datos de las gráficas.</span><br/>
                             </div>
                             </div>
