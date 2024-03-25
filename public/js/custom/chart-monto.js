@@ -68,30 +68,32 @@ function initChartMonto(ctx, descripciones, montos_iniciales, montos_finales)
           datasets: [{
             borderColor: Utils.CHART_COLORS.blue,
             data: montos_iniciales,
-            pointStyle: 'circle',
-            pointRadius: 2,
-            pointHoverRadius: 4,
-            fill: false,
+            borderWidth: 1,
+            radius: 0,
           },
           {
             borderColor: Utils.CHART_COLORS.red,
             data: montos_finales,
-            pointStyle: 'star',
-            pointRadius: 2,
-            pointHoverRadius: 4,
-            fill: false,
+            borderWidth: 1,
+            radius: 0,
           }]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
           animation,
+          parsing: false,
           interaction: {
-            intersect: false,
-            mode: 'index',
+            mode: 'nearest',
+            axis: 'x',
+            intersect: false
           },
           plugins: {
             legend: false,
+            decimation: {
+                enabled: false,
+                algorithm: 'min-max',
+            },
             title: {
               display: true,
               text: 'Gráfica de muestreo / montos'
@@ -106,7 +108,6 @@ function initChartMonto(ctx, descripciones, montos_iniciales, montos_finales)
                         return [titleText];
                     },
                     label: function(context) {
-                        console.log(context);
                         const preLabel = (context.datasetIndex == 0) ? 'Monto inicial' : 'Monto final';
                         const labelText  = preLabel + ': ' + context.formattedValue;
                         return [labelText];
@@ -116,8 +117,6 @@ function initChartMonto(ctx, descripciones, montos_iniciales, montos_finales)
                         const dataset_1 = context[0].raw.y;
                         const dataset_2 = context[1].raw.y; // raw.y
                         const suma = dataset_1 + dataset_2;
-                        console.log('tooltip.callbacks.footer',context)
-
                         return ['Monto total: ' + suma.toLocaleString(), 'Fecha: ' + fecha];
                     },
                 }

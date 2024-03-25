@@ -91,13 +91,13 @@ function initChartCategoria(ctx, labels, saldos)
                   return context.chart.data.labels[labelIndex] + ': ' + context.formattedValue;
                 },
                 footer: function(tooltipItems) {
-                    let sum = 0;
+                    let suma = 0;
 
                     tooltipItems.forEach(function(tooltipItem) {
-                        sum += tooltipItem.dataset.data[0]  + tooltipItem.dataset.data[1];
+                        suma += tooltipItem.dataset.data[0]  + tooltipItem.dataset.data[1];
                     });
 
-                    return ['Monto total: ' + sum];
+                    return ['Monto total: ' + suma.toLocaleString()];
                 },
               }
             }

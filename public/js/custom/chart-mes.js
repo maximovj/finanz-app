@@ -53,19 +53,19 @@ function initChartMes(ctx, labels, saldos_totales, activos)
                 tooltip: {
                   callbacks: {
                     footer: function(tooltipItems) {
-                        let sum = 0;
+                        let suma = 0;
 
                         tooltipItems.forEach(function(tooltipItem) {
-                          sum += tooltipItem.parsed._stacks.y[0]  + tooltipItem.parsed._stacks.y[1];
+                          suma += tooltipItem.parsed._stacks.y[0]  + tooltipItem.parsed._stacks.y[1];
                         });
-                        return ['Monto total: ' + sum];
+                        return ['Monto total: ' + suma.toLocaleString()];
                     },
                   }
                 }
             },
             scales: {
                 y: {
-                stacked: true
+                    stacked: true
                 }
             }
         },
