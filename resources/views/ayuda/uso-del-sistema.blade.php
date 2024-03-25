@@ -53,7 +53,11 @@
 
                             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                             <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                <p>
+                                    Una balanza es un contender de estado flujo de efectivo / informe financiero, es requerido para que el sistema, puedo ordenar las cuentas / los datos por balanza. <br/>
+                                    Los datos requeridos son: titulo, descripción y periodo.
+                                </p>
+                                <span class="text-muted fs-10 p-clear">Puedes crear una balanza <a href="{{ route('balanza.create') }}" target="_blank">(Aquí)</a></span>
                             </div>
                             </div>
                         </div>
@@ -67,7 +71,9 @@
                             </div>
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                             <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                <p>
+                                    Cada balanza tiene acciones para poder ver estado flujo de efectivo / informe financiero, editar una balanza, eliminar una balanza.
+                                </p>
                             </div>
                             </div>
                         </div>
@@ -81,7 +87,10 @@
                             </div>
                             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                             <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                <p>
+                                    Cada balanza tiene su propio estado flujo de efectivo / Informe financieros, esta página muestra todos los registros o datos de una balanza. Los registros o datos, son información de cada cuenta o movimiento de efectivo, muestra información como: No. cuenta, Fecha, Descripción, Categoría, Monto inicial, Monto final, Etiqueta y Acciones.
+                                </p>
+                                <span class="text-muted fs-10 p-clear">Nota: Consulte Ayuda > Importar Excel > Columnas e información requeridas.</span>
                             </div>
                             </div>
                         </div>
@@ -95,7 +104,10 @@
                             </div>
                             <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                             <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                <p>
+                                    En la página de "Muestreo", muestra todos los registros o datos de una balanza agrupados por meses, categorías, etiquetas y montos. Para la visualización se utilizan varios tipos de gráficas.
+                                </p>
+                                <span class="text-muted fs-10 p-clear">Nota: Se utilizan montos inicial y monto final para generar los datos de las gráficas.</span><br/>
                             </div>
                             </div>
                         </div>
@@ -109,7 +121,13 @@
                             </div>
                             <div id="collapseFive" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                             <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                <p>
+                                    En la página de "Importar Excel", sirve para importar datos desde una archivo Excel. <br/>
+                                    El sistema requiere de 5 columnas en tu archivo Excel, para importar datos en el sistema, es necesario colocar los datos en el columna B1-B5, en las primeras 5 filas de tu archivo Excel. <br/>
+                                    El sistema requiere de 7 columnas en tu archivo Excel, para importar datos en el sistema.
+                                </p>
+                                <span class="text-muted fs-10 p-clear">Nota: El sistema genera un token para importar datos desde una archivo Excel.</span><br/>
+                                <span class="text-muted fs-10 p-clear">Nota: Consulte Ayuda > Importar Excel</span>
                             </div>
                             </div>
                         </div>
