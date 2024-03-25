@@ -47,7 +47,7 @@
                         <p class="form-text text-muted fs-10 p-clear">
                             Asegúrese de incluir todas las columnas e información requeridas para la importación.
                             <span class="btn-link fs-10 pointer"
-                            data-img="{{asset("storage/finanz/columnas-requeridas.jpg")}}"
+                            data-img="{{asset("storage/finanz/columnas-requeridas.webp")}}"
                             data-title="Columnas requeridas"
                             data-text="Asegúrese de incluir todas las columnas e información requeridas para la importación."
                             onclick="handlerVerEjemplo(this)">(Ver ejemplo)</span>
@@ -55,7 +55,7 @@
                         </p>
                         <br/>
                         <label><b>Datos de validación</b> <span class="btn-link fs-10 pointer"
-                        data-img="{{asset("storage/finanz/datos-de-validacion.jpg")}}"
+                        data-img="{{asset("storage/finanz/datos-de-validacion.webp")}}"
                         data-title="Datos de validación"
                         data-text="Debe colocar los siguientes datos (B1-B5), que se muestra en la tabla de a continuación, en su archivo excel para validar el documento."
                         onclick="handlerVerEjemplo(this)">(Ver ejemplo)</span></label>

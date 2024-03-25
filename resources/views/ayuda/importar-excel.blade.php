@@ -134,7 +134,7 @@
                                     <span class="text-muted fs-12 p-clear">Esta columna es el token / clave secreta para balanza actual (Esto es generado por el sistema).</span>
                                 </p>
                                 <figure>
-                                    <img class="w-100" src="{{ asset('storage/finanz/datos-de-validacion.jpg') }}" alt="datos-de-verifacion.jpg" loading="lazy">
+                                    <img class="w-100" src="{{ asset('storage/finanz/datos-de-validacion.webp') }}" alt="datos-de-verifacion.jpg" loading="lazy">
                                     <figcaption class="text-muted">Fig.1 - Datos de validación</figcaption>
                                 </figure>
                             </div>
@@ -183,7 +183,7 @@
                                     <span class="text-muted fs-12 p-clear">Esta columna es para clasificar la cuenta, la información requerida es: ninguno, credito, debito, patrimonio, capital (sin tildes).</span>
                                 </p>
                                 <figure>
-                                    <img class="w-100" src="{{ asset('storage/finanz/columnas-requeridas.jpg') }}" alt="Columnas requeridas" loading="lazy">
+                                    <img class="w-100" src="{{ asset('storage/finanz/columnas-requeridas.webp') }}" alt="Columnas requeridas" loading="lazy">
                                     <figcaption class="text-muted">Fig.2 - Columnas requerida en archivo excel.</figcaption>
                                 </figure>
                             </div>
