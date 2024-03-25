@@ -62,22 +62,6 @@
                             </div>
                         </div>
                         <div class="card">
-                            <div class="card-header" id="headingTwo">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Balanzas > Acciones
-                                </button>
-                            </h5>
-                            </div>
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                            <div class="card-body">
-                                <p>
-                                    Cada balanza tiene acciones para poder ver estado flujo de efectivo / informe financiero, editar una balanza, eliminar una balanza.
-                                </p>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="card">
                             <div class="card-header" id="headingThree">
                             <h5 class="mb-0">
                                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
