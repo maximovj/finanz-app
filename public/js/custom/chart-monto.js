@@ -67,15 +67,19 @@ function initChartMonto(ctx, descripciones, montos_iniciales, montos_finales)
           labels: descripciones,
           datasets: [{
             borderColor: Utils.CHART_COLORS.blue,
-            borderWidth: 1,
-            radius: 0,
             data: montos_iniciales,
+            pointStyle: 'circle',
+            pointRadius: 2,
+            pointHoverRadius: 4,
+            fill: false,
           },
           {
             borderColor: Utils.CHART_COLORS.red,
-            borderWidth: 1,
-            radius: 0,
-            data: montos_finales ,
+            data: montos_finales,
+            pointStyle: 'star',
+            pointRadius: 2,
+            pointHoverRadius: 4,
+            fill: false,
           }]
         },
         options: {
@@ -93,6 +97,7 @@ function initChartMonto(ctx, descripciones, montos_iniciales, montos_finales)
               text: 'Gráfica de muestreo / montos'
             },
             tooltip: {
+                usePointStyle: true,
                 callbacks: {
                     title: function(context){
                         const cont = context[0];
