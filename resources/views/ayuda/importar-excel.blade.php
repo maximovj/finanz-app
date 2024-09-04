@@ -75,7 +75,7 @@
                                 <p>
                                     <span class="badge badge-primary">Paso 4</span><br/>
                                     <span class="text-muted fs-12 p-clear">Agregar los datos de validación en tu archivo Excel, en la columna B1-B5.</span><br/>
-                                    <span class="text-muted fs-10 p-clear">Nota: Puedes descargar una plantilla de Excel <a href="{{ asset('storage/finanz/EF-Plain.xlsx') }}" download>(Aquí)</a>.</span>
+                                    <span class="text-muted fs-10 p-clear">Nota: Puedes descargar una plantilla de Excel <a href="{{ asset('finanz/EF-Plain.xlsx') }}" download>(Aquí)</a>.</span>
                                 </p>
                                 <p>
                                     <span class="badge badge-primary">Paso 5</span><br/>
@@ -134,7 +134,7 @@
                                     <span class="text-muted fs-12 p-clear">Esta columna es el token / clave secreta para balanza actual (Esto es generado por el sistema).</span>
                                 </p>
                                 <figure>
-                                    <img class="w-100" src="{{ asset('storage/finanz/datos-de-validacion.webp') }}" alt="datos-de-verifacion.jpg" loading="lazy">
+                                    <img class="w-100" src="{{ asset('finanz/datos-de-validacion.webp') }}" alt="datos-de-verifacion.jpg" loading="lazy">
                                     <figcaption class="text-muted">Fig.1 - Datos de validación</figcaption>
                                 </figure>
                             </div>
@@ -151,7 +151,7 @@
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                             <div class="card-body">
                                 <p>
-                                    El sistema requiere de 7 columnas en tu archivo Excel, para importar datos en el sistema. Puede descargar una plantilla <a href="{{ asset('storage/finanz/EF-Plain.xlsx') }}" download>(Aquí)</a>.
+                                    El sistema requiere de 7 columnas en tu archivo Excel, para importar datos en el sistema. Puede descargar una plantilla <a href="{{ asset('finanz/EF-Plain.xlsx') }}" download>(Aquí)</a>.
                                 </p>
                                 <p>Los columnas requeridas para el archivo Excel son:</p>
                                 <p>
@@ -183,7 +183,7 @@
                                     <span class="text-muted fs-12 p-clear">Esta columna es para clasificar la cuenta, la información requerida es: ninguno, credito, debito, patrimonio, capital (sin tildes).</span>
                                 </p>
                                 <figure>
-                                    <img class="w-100" src="{{ asset('storage/finanz/columnas-requeridas.webp') }}" alt="Columnas requeridas" loading="lazy">
+                                    <img class="w-100" src="{{ asset('finanz/columnas-requeridas.webp') }}" alt="Columnas requeridas" loading="lazy">
                                     <figcaption class="text-muted">Fig.2 - Columnas requerida en archivo excel.</figcaption>
                                 </figure>
                             </div>
