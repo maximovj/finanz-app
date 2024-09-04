@@ -10,3 +10,13 @@ en un cierto periodo de tiempo, puedes observar en forma de gráfica los activos
 - BackPack 4.1
 - Bootstrap 4
 - MySQL 5.7
+
+# Vista Previa
+
+![01.png](/screenshots/01.png)
+
+![02.png](/screenshots/02.png)
+
+![03.png](/screenshots/03.png)
+
+![04.png](/screenshots/04.png)
