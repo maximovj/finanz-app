@@ -41,6 +41,20 @@
             <div class="mx-0 my-2">
                 <div class="card">
                     <div class="card-body">
+                        <!-- Alerta de instrucciones -->
+                        <div class="form-group col-sm-12" style="margin-bottom: 0;" element="div">
+                            <div class="alert alert-light alert-dismissible fade show" style="font-size: 12px;" role="alert">
+                                <span style="color: red;">NOTA:</span>
+                                <span style="color: red;">
+                                    Lee las instrucciones para importar un archivo Excel.
+                                    <a href="{{ route('finanz.ayuda.importar-excel') }}">Ver pasos (Click aquí)</a>
+                                </span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true" style="color: black;">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+
                         <p class="form-text text-muted fs-10 p-clear">
                             Debe colocar los siguientes datos (B1-B5), que se muestra en la tabla de a continuación, en su archivo excel para validar el documento.
                         </p>
