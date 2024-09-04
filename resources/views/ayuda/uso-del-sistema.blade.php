@@ -41,6 +41,16 @@
         <div class="mx-0 my-2">
             <div class="card">
                 <div class="card-body">
+                    <!-- Alerta de instrucciones -->
+                    <div class="form-group col-sm-12" style="margin-bottom: 0;" element="div">
+                        <div class="alert alert-light alert-dismissible fade show" style="font-size: 12px;" role="alert">
+                            <span style="color: red;">NOTA:</span>
+                            <span style="color: red;">Haz click sobre el título de cada tema para ver la información</span>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true" style="color: black;">&times;</span>
+                            </button>
+                        </div>
+                    </div>
                     <div id="accordion">
                         <div class="card">
                             <div class="card-header" id="headingOne">
