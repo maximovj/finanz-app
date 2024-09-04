@@ -41,13 +41,27 @@
             <div class="mx-0 my-2">
                 <div class="card">
                     <div class="card-body">
+                        <!-- Alerta de instrucciones -->
+                        <div class="form-group col-sm-12" style="margin-bottom: 0;" element="div">
+                            <div class="alert alert-light alert-dismissible fade show" style="font-size: 12px;" role="alert">
+                                <span style="color: red;">NOTA:</span>
+                                <span style="color: red;">
+                                    Lee las instrucciones para importar un archivo Excel.
+                                    <a href="{{ route('finanz.ayuda.importar-excel') }}">Ver pasos (Click aquí)</a>
+                                </span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true" style="color: black;">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+
                         <p class="form-text text-muted fs-10 p-clear">
                             Debe colocar los siguientes datos (B1-B5), que se muestra en la tabla de a continuación, en su archivo excel para validar el documento.
                         </p>
                         <p class="form-text text-muted fs-10 p-clear">
                             Asegúrese de incluir todas las columnas e información requeridas para la importación.
                             <span class="btn-link fs-10 pointer"
-                            data-img="{{asset("storage/finanz/columnas-requeridas.webp")}}"
+                            data-img="{{ asset("finanz/columnas-requeridas.webp") }}"
                             data-title="Columnas requeridas"
                             data-text="Asegúrese de incluir todas las columnas e información requeridas para la importación."
                             onclick="handlerVerEjemplo(this)">(Ver ejemplo)</span>
@@ -55,7 +69,7 @@
                         </p>
                         <br/>
                         <label><b>Datos de validación</b> <span class="btn-link fs-10 pointer"
-                        data-img="{{asset("storage/finanz/datos-de-validacion.webp")}}"
+                        data-img="{{ asset("finanz/datos-de-validacion.webp") }}"
                         data-title="Datos de validación"
                         data-text="Debe colocar los siguientes datos (B1-B5), que se muestra en la tabla de a continuación, en su archivo excel para validar el documento."
                         onclick="handlerVerEjemplo(this)">(Ver ejemplo)</span></label>
@@ -90,7 +104,7 @@
                                 </tbody>
                         </table>
                         <p class="form-text text-muted fs-10 p-clear">
-                            Descargar una plantilla de hoja de cálculo <a href="{{ asset('storage/finanz/EF-Plain.xlsx') }}" download>(Click aquí).</a>
+                            Descargar una plantilla de hoja de cálculo <a href="{{ asset('finanz/EF-Plain.xlsx') }}" download>(Click aquí).</a>
                         </p>
                         <br>
                         <div class="form-group">

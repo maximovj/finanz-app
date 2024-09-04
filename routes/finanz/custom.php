@@ -30,6 +30,11 @@ function root_app()
 {
     // route home
     Route::get('/', function () {
-        return redirect('/'.config('backpack.base.route_prefix', 'admin'));
+        return redirect(url(config('backpack.base.route_prefix'), 'dashboard'));
+    });
+
+    // route home
+    Route::get('/'.config('backpack.base.route_prefix'), function () {
+        return redirect(url(config('backpack.base.route_prefix'), 'dashboard'));
     });
 }
