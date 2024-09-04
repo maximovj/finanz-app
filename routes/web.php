@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 require 'finanz/custom.php';
 
-Route::group([ 'prefix' => config('backpack.base.route_prefix', 'admin')], 
+Route::group([ 'prefix' => config('backpack.base.route_prefix', 'dashboard')],
 function(){
     prefix_backpack();
 });
