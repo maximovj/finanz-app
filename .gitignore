@@ -10,3 +10,25 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+
+# custom my-scripts
+/my-scripts
+**/my-scripts/
+/my-scripts/**/*
+
+# custom Excalidraw
+/my-excalidraw
+**/my-excalidraw/
+/my-excalidraw/**/*
+
+# adds .vscode folder to ignored files
+.vscode/**/*
+
+# exclude these files from being ignored
+.vscode/settings.json
+.vscode/extensions.json
+.vscode/launch.json
+.vscode/tasks.json
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test

@@ -1,0 +1,134 @@
+/*
+ * Victor J. <victor.maximo@mtlc.com.mx>
+ * date 18/03/2024
+ * update 18/03/2024
+ * desc Custom CSS : all css styles must have prefix `finanz`
+ */
+
+.finanz-dropdown-item:hover{
+    background-color: #b0b0b02b;
+    cursor: pointer;
+}
+
+.finanz-dropdown-item i {
+    color: #2a2a2a44;
+}
+
+.finanz-bold {
+    color: #2a2a2a44;
+    font-weight: 700;
+}
+
+.finanz-chart-render {
+    position: relative;
+    height: 400px;
+    width: 100%;
+}
+
+.finanz-chart-box {
+    height: 440px;
+    margin: auto;
+}
+
+@media only screen and (max-width: 780px) {
+    .finanz-chart-box {
+        width: 100%;
+        height: 400px;
+    }
+}
+
+/**********************************************************************
+* WIDTH PORCERT
+***********************************************************************/
+
+.wp-100{
+    width: 100%;
+}
+
+.wp-90{
+    width: 90%;
+}
+
+.wp-80{
+    width: 80%;
+}
+
+.wp-70{
+    width: 70%;
+}
+
+.wp-60{
+    width: 60%;
+}
+
+.wp-50{
+    width: 50%;
+}
+
+.wp-40{
+    width: 40%;
+}
+
+.wp-30{
+    width: 30%;
+}
+
+.wp-20{
+    width: 20%;
+}
+
+/*********************************************************************************
+* DISPLAY FLEX
+**********************************************************************************/
+
+.center-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/**********************************************************************
+* FONT SIZE
+***********************************************************************/
+
+.fs-10 {
+    font-size: 10px;
+}
+
+.fs-14 {
+    font-size: 12px;
+}
+
+.fs-14 {
+    font-size: 14px;
+}
+
+.fs-20 {
+    font-size: 20px;
+}
+
+.fs-22 {
+    font-size: 22px;
+}
+
+.fs-24 {
+    font-size: 24px;
+}
+
+/**********************************************************************
+* ELEMENTS
+***********************************************************************/
+
+.p-clear {
+    margin: 0;
+    padding: 0;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.txt-helper {
+    color: #989898;
+    font-size: 12px;
+}
