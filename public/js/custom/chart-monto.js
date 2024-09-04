@@ -16,7 +16,7 @@
  * easing effects and durationX specified. The chart also has options for interaction, plugins, legend,
  * title, and scales.
  */
-function initChartMonto(ctx, montos_iniciales, montos_finales)
+function initChartMonto(ctx, descripciones, montos_iniciales, montos_finales)
 {
     const data = montos_iniciales;
     const data2 = montos_finales;
@@ -28,8 +28,8 @@ function initChartMonto(ctx, montos_iniciales, montos_finales)
     const totalDuration = 5000;
     const durationX = (ctx) => easingOut(ctx.index / data.length) * totalDuration / data.length;
     const delayX = (ctx) => easingOut(ctx.index / data.length) * totalDuration;
-    const durationY = (ctx) => easingIn(ctx.index / data.length) * totalDuration / data.length;
-    const delayY = (ctx) => easingIn(ctx.index / data.length) * totalDuration;
+    const durationY = (ctx) => easingIn(ctx.index / data2.length) * totalDuration / data2.length;
+    const delayY = (ctx) => easingIn(ctx.index / data2.length) * totalDuration;
     const previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
     const animation = {
         x: {
@@ -51,7 +51,7 @@ function initChartMonto(ctx, montos_iniciales, montos_finales)
             duration: durationY,
             from: previousY,
             delay(ctx) {
-            if (ctx.type !== 'data' || ctx.yStarted) {
+            if (ctx.type !== 'data2' || ctx.yStarted) {
                 return 0;
             }
             ctx.yStarted = true;
@@ -63,32 +63,64 @@ function initChartMonto(ctx, montos_iniciales, montos_finales)
     new Chart(ctx, {
         type: 'line',
         data: {
+          label: descripciones,
+          labels: descripciones,
           datasets: [{
-            borderColor: Utils.CHART_COLORS.red,
+            borderColor: Utils.CHART_COLORS.blue,
+            data: montos_iniciales,
             borderWidth: 1,
             radius: 0,
-            data: data,
           },
           {
-            borderColor: Utils.CHART_COLORS.blue,
+            borderColor: Utils.CHART_COLORS.red,
+            data: montos_finales,
             borderWidth: 1,
             radius: 0,
-            data: data2,
           }]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
           animation,
+          parsing: false,
           interaction: {
+            mode: 'nearest',
+            axis: 'x',
             intersect: false
           },
           plugins: {
             legend: false,
+            decimation: {
+                enabled: false,
+                algorithm: 'min-max',
+            },
             title: {
               display: true,
               text: 'Gráfica de muestreo / montos'
             },
+            tooltip: {
+                usePointStyle: true,
+                callbacks: {
+                    title: function(context){
+                        const cont = context[0];
+                        const labelIndex = (cont.datasetIndex * 2) + cont.dataIndex;
+                        const titleText = cont.chart.data.labels[labelIndex];
+                        return [titleText];
+                    },
+                    label: function(context) {
+                        const preLabel = (context.datasetIndex == 0) ? 'Monto inicial' : 'Monto final';
+                        const labelText  = preLabel + ': ' + context.formattedValue;
+                        return [labelText];
+                    },
+                    footer: function(context) {
+                        const fecha = context[0].raw.fecha;
+                        const dataset_1 = context[0].raw.y;
+                        const dataset_2 = context[1].raw.y; // raw.y
+                        const suma = dataset_1 + dataset_2;
+                        return ['Monto total: ' + suma.toLocaleString(), 'Fecha: ' + fecha];
+                    },
+                }
+            }
           },
           scales: {
             x: {

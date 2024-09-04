@@ -93,24 +93,29 @@ class MuestreoController extends Controller
 
         $resultados = InformeFinanciero::query()
         ->where('balanza_id', $balanza->id)
-        ->selectRaw('monto_inicial, monto_final')
+        ->selectRaw('fecha, descripcion, monto_inicial, monto_final')
         ->get();
 
         $x = 0;
         $montos_iniciales = $resultados->reduce(function ($carry, $item) use(&$x) {
-            $carry[] = ['x' => $x, 'y' => floatval($item->monto_inicial)];
+            $carry[] = ['x' => $x, 'y' => floatval($item->monto_inicial), 'label' => strval($item->descripcion), 'fecha' => strval($item->fecha)];
             $x++;
             return $carry;
         }, []);
 
         $x = 0;
         $montos_finales = $resultados->reduce(function ($carry, $item) use(&$x) {
-            $carry[] = ['x' => $x, 'y' => floatval($item->monto_final)];
+            $carry[] = ['x' => $x, 'y' => floatval($item->monto_final), 'label' => strval($item->descripcion), 'fecha' => strval($item->fecha)];
             $x++;
             return $carry;
         }, []);
 
-        return ['montos_iniciales' => $montos_iniciales, 'montos_finales' => $montos_finales];
+        $descripciones = $resultados->reduce(function ($carry, $item) {
+            $carry[] = strval($item->descripcion);
+            return $carry;
+        }, []);
+
+        return ['montos_iniciales' => $montos_iniciales, 'montos_finales' => $montos_finales, 'descripciones' => $descripciones];
     }
 
     protected function getNombreDelMes(int $mes){
