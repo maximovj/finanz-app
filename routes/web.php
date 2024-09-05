@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\System\AyudaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +14,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-require 'finanz/custom.php';
+/*******
+* ROUTES FROM ROOT (/)
+********/
+
+// route home
+Route::get('/', function () {
+    return redirect(url(config('backpack.base.route_prefix'), 'dashboard'));
+});
+
+// route home
+Route::get('/'.config('backpack.base.route_prefix'), function () {
+    return redirect(url(config('backpack.base.route_prefix'), 'dashboard'));
+});
 
 Route::group([ 'prefix' => config('backpack.base.route_prefix', 'dashboard')],
 function(){
-    prefix_backpack();
-});
+    /*******
+    * ROUTES WITH A BACKPACK PREFIX
+    ********/
+    // Route import excel
+    Route::get('/ayuda/importar-excel', [AyudaController::class, 'ayuda_importar_excel'])->name('finanz.ayuda.importar-excel');
 
-root_app();
+    // Route import excel
+    Route::get('/ayuda/uso-del-sistema', [AyudaController::class, 'ayuda_uso_del_sistema'])->name('finanz.ayuda.uso-del-sistema');
+
+    // Route log viewer laravel
+    Route::get('/logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
+});
