@@ -12,6 +12,9 @@ npm-debug.log
 yarn-error.log
 
 # custom files
+composer.lock
+package-lock.json
+*-lock.json
 *.lock
 
 # custom my-scripts
