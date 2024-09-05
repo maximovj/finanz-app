@@ -1,25 +1,21 @@
-# BEGIN HTTPS Forced Redirect
-# The directives (lines) between "BEGIN HTTPS Forced Redirect" and
-# "END HTTPS Forced Redirect" are dynamically generated, and should
-# only be modified via the filters. Any changes to the directives between
-# these markers will be overwritten.
-
 <IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-</IfModule>
+    RewriteEngine On
 
-# END HTTPS Forced Redirect
+    # Redirigir HTTP a HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteRule ^(.*)$ public/$1 [L]
-</IfModule>
+    # Manejo del encabezado Authorization
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-# php -- BEGIN cPanel-generated handler, do not edit
-# Set the “ea-php74” package as the default “PHP” programming language.
-<IfModule mime_module>
-  AddHandler application/x-httpd-ea-php74 .php .php7 .phtml
+    # Redirigir barras diagonales finales si no es una carpeta
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Enviar solicitudes al controlador frontal
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
 </IfModule>
-# php -- END cPanel-generated handler, do not edit
