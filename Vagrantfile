@@ -45,7 +45,7 @@ Vagrant.configure("2") do |config|
     # *OJO* : Corre solo una vez usando `vagrant up`
     config.vm.provision "install-docker",
         type: "docker",
-        images: ["node:18.20-slim", "mysql:5.7", "mongo:4.4"]
+        images: ["mysql:5.7", "shinsenter/laravel:php8.1"]
 
     #config.vm.provider "vmware_fusion" do |v|
     #    v.vmx["vhv.enable"] = "TRUE"
