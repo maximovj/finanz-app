@@ -22,6 +22,19 @@ Vagrant.configure("2") do |config|
     config.vm.synced_folder "./data", "/home/vagrant/data",
     owner: "root", group: "root", create: true, disabled: true
 
+    # Configurar clave de acceso pública con ssh
+    #config.ssh.insert_key = false
+
+    # Configurar sistema de virtualbox
+    config.vm.provider "virtualbox" do |vb|
+        # Mostrar la vetana de logs
+        vb.gui = true
+    
+        # Personaliza la cantidad de memoria y cpus
+        vb.memory = "2080"
+        vb.cpus = "4"
+    end
+
     # Crear una red privada estática, para acceder usando una dirección IP especifica
     config.vm.network "private_network", ip: "192.168.83.90"
 

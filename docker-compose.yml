@@ -37,10 +37,16 @@ services:
       - finanzapp-net
     command: |
       /bin/bash -c "
-        php artisan key:generate &&
-        php artisan config:clear &&
+        composer install --ignore-platform-reqs && 
         php artisan migrate --force &&
-        nginx -g 'daemon off;'  # Mantener nginx corriendo en el primer plano
+        # npm install --production &&
+        php artisan optimize &&
+        php artisan config:cache &&
+        php artisan config:clear &&
+        php artisan cache:clear &&
+        php artisan view:clear &&
+        php artisan route:clear &&
+        nginx -g 'daemon off;'
       "
     depends_on:
       - service_db
