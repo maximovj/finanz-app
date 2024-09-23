@@ -1,0 +1,46 @@
+version: '3.8'
+
+networks:
+  finanzapp-net:
+    driver: bridge
+
+services:
+  service_db:
+    image: mysql:5.7
+    container_name: finanzapp-db
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: db_finanzapp
+      MYSQL_USER: finanzapp_user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    networks:
+      - finanzapp-net
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_spanish2_ci
+
+  service_app:
+    image: shinsenter/laravel:php8.1
+    container_name: finanzapp
+    environment:
+      DB_HOST: service_db
+      DB_DATABASE: db_finanzapp
+      DB_USERNAME: finanzapp_user
+      DB_PASSWORD: password
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - .:/var/www/html
+    networks:
+      - finanzapp-net
+    command: |
+      /bin/bash -c "
+        php artisan key:generate &&
+        php artisan config:clear &&
+        php artisan migrate --force &&
+        nginx -g 'daemon off;'  # Mantener nginx corriendo en el primer plano
+      "
+    depends_on:
+      - service_db

@@ -1,4 +1,11 @@
+# custom folders
 vendor
 .vscode
 .workspace
 .vagrant
+
+# custom files
+composer.lock
+package-lock.json
+*-lock.json
+*.lock
