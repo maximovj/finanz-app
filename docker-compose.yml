@@ -38,6 +38,7 @@ services:
     command: |
       /bin/bash -c "
         composer install --ignore-platform-reqs && 
+        php artisan key:generate &&
         php artisan migrate --force &&
         # npm install --production &&
         php artisan optimize &&
