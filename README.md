@@ -15,6 +15,8 @@ en un cierto periodo de tiempo, puedes observar en forma de gráfica los activos
 
 # Funcionalidades
 
+- Proyecto con infraestructura virtualizada o proyecto Vagrantizado.
+- Proyecto dockerizado.
 - Admin Panel
 - Se elimina el sistema Login por defecto de Laravel BackPack
 - Se crea vistas personalizadas para Laravel BackPack
